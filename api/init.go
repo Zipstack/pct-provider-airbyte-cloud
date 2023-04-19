@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"strings"
 	"time"
 )
 
@@ -74,6 +75,11 @@ func (c *Client) doRequest(method string, url string, body []byte, headers map[s
 func (c *Client) getBearerToken() string {
 	if c.Authorization == "" {
 		return ""
+	}
+
+	if strings.HasPrefix(c.Authorization, "Bearer") {
+		return c.Authorization
+
 	}
 	// encStr := base64.StdEncoding.EncodeToString([]byte(c.Authorization))
 	return fmt.Sprintf("Bearer %s", c.Authorization)

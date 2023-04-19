@@ -7,7 +7,7 @@ import (
 	"github.com/zipstack/pct-plugin-framework/fwhelpers"
 	"github.com/zipstack/pct-plugin-framework/schema"
 
-	"github.com/zipstack/pct-provider-airbyt-cloud/api"
+	"github.com/zipstack/pct-provider-airbyte-cloud/api"
 )
 
 // Resource implementation.
@@ -303,6 +303,7 @@ func (r *sourcePipedriveResource) Update(req *schema.ServiceRequest) *schema.Ser
 // Delete deletes the resource and removes the state on success.
 func (r *sourcePipedriveResource) Delete(req *schema.ServiceRequest) *schema.ServiceResponse {
 	// Delete existing source
+
 	err := r.Client.DeletePipedriveSource(req.StateID)
 	if err != nil {
 		return schema.ErrorResponse(err)

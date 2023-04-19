@@ -5,43 +5,46 @@ import (
 	"fmt"
 )
 
-type SourcePipedriveID struct {
+type SourceZendeskSupportID struct {
 	SourceId string `json:"sourceId"`
 }
 
-type SourcePipedrive struct {
-	Name          string                    `json:"name"`
-	SourceId      string                    `json:"sourceId,omitempty"`
-	WorkspaceId   string                    `json:"workspaceId,omitempty"`
-	Configuration SourcePipedriveConnConfig `json:"configuration"`
+type SourceZendeskSupport struct {
+	Name                    string                         `json:"name"`
+	SourceId                string                         `json:"sourceId,omitempty"`
+	WorkspaceId             string                         `json:"workspaceId"`
+	ConnectionConfiguration SourceZendeskSupportConnConfig `json:"configuration"`
 }
 
-type SourcePipedriveConnConfig struct {
-	SourceType           string                         `json:"sourceType"`
-	ReplicationStartDate string                         `json:"replication_start_date"`
-	Authorization        SourcePipedriveAuthConfigModel `json:"authorization"`
+type SourceZendeskSupportConnConfig struct {
+	SourceType      string                         `json:"sourceType"`
+	StartDate       string                         `json:"start_date"`
+	IgnorPagination bool                           `json:"ignore_pagination,omitempty"`
+	Subdomain       string                         `json:"subdomain"`
+	Credentials     SourceZendeskSupportCredConfig `json:"credentials"`
 }
 
-type SourcePipedriveAuthConfigModel struct {
-	AuthType string `json:"auth_type"`
-	ApiToken string `json:"api_token"`
+type SourceZendeskSupportCredConfig struct {
+	Credentials string `json:"credentials"`
+	Email       string `json:"email"`
+	ApiToken    string `json:"api_token"`
 }
 
-func (c *Client) CreatePipedriveSource(payload SourcePipedrive) (SourcePipedrive, error) {
+func (c *Client) CreateZendeskSupportSource(payload SourceZendeskSupport) (SourceZendeskSupport, error) {
 	// logger := fwhelpers.GetLogger()
 	method := "POST"
 	url := c.Host + "/v1/sources"
 	body, err := json.Marshal(payload)
 	if err != nil {
-		return SourcePipedrive{}, err
+		return SourceZendeskSupport{}, err
 	}
 
 	b, statusCode, _, _, err := c.doRequest(method, url, body, nil)
 	if err != nil {
-		return SourcePipedrive{}, err
+		return SourceZendeskSupport{}, err
 	}
+	source := SourceZendeskSupport{}
 
-	source := SourcePipedrive{}
 	if statusCode >= 200 && statusCode <= 299 {
 		err = json.Unmarshal(b, &source)
 		return source, err
@@ -55,23 +58,23 @@ func (c *Client) CreatePipedriveSource(payload SourcePipedrive) (SourcePipedrive
 	}
 }
 
-func (c *Client) ReadPipedriveSource(sourceId string) (SourcePipedrive, error) {
+func (c *Client) ReadZendeskSupportSource(sourceId string) (SourceZendeskSupport, error) {
 	// logger := fwhelpers.GetLogger()
 
 	method := "GET"
 	url := c.Host + "/v1/sources/" + sourceId
-	//sId := SourcePipedriveID{sourceId}
-	//body, err := json.Marshal(sId)
+	// sId := SourceZendeskSupportID{sourceId}
+	// body, err := json.Marshal(sId)
 	// if err != nil {
-	// 	return SourcePipedrive{}, err
+	// 	return SourceZendeskSupport{}, err
 	// }
 
 	b, statusCode, _, _, err := c.doRequest(method, url, []byte{}, nil)
 	if err != nil {
-		return SourcePipedrive{}, err
+		return SourceZendeskSupport{}, err
 	}
 
-	source := SourcePipedrive{}
+	source := SourceZendeskSupport{}
 	if statusCode >= 200 && statusCode <= 299 {
 		err = json.Unmarshal(b, &source)
 		return source, err
@@ -85,22 +88,22 @@ func (c *Client) ReadPipedriveSource(sourceId string) (SourcePipedrive, error) {
 	}
 }
 
-func (c *Client) UpdatePipedriveSource(payload SourcePipedrive) (SourcePipedrive, error) {
+func (c *Client) UpdateZendeskSupportSource(payload SourceZendeskSupport) (SourceZendeskSupport, error) {
 	// logger := fwhelpers.GetLogger()
 
 	/*method := "PUT"
 	url := c.Host + "/v1/sources/" + payload.SourceId
 	body, err := json.Marshal(payload)
 	if err != nil {
-		return SourcePipedrive{}, err
+		return SourceZendeskSupport{}, err
 	}
 
 	b, statusCode, _, _, err := c.doRequest(method, url, body, nil)
 	if err != nil {
-		return SourcePipedrive{}, err
+		return SourceZendeskSupport{}, err
 	}
 
-	source := SourcePipedrive{}
+	source := SourceZendeskSupport{}
 	if statusCode >= 200 && statusCode <= 299 {
 		err = json.Unmarshal(b, &source)
 		return source, err
@@ -112,21 +115,19 @@ func (c *Client) UpdatePipedriveSource(payload SourcePipedrive) (SourcePipedrive
 			return source, fmt.Errorf(msg)
 		}
 	}*/
-
 	method := "GET"
 	url := c.Host + "/v1/sources/" + payload.SourceId
-	// sId := SourceStripeID{sourceId}
+	// sId := SourceZendeskSupportID{sourceId}
 	// body, err := json.Marshal(sId)
 	// if err != nil {
-	// 	return SourceStripe{}, err
+	// 	return SourceZendeskSupport{}, err
 	// }
-
 	b, statusCode, _, _, err := c.doRequest(method, url, []byte{}, nil)
 	if err != nil {
-		return SourcePipedrive{}, err
+		return SourceZendeskSupport{}, err
 	}
 
-	source := SourcePipedrive{}
+	source := SourceZendeskSupport{}
 	if statusCode >= 200 && statusCode <= 299 {
 		err = json.Unmarshal(b, &source)
 		return source, err
@@ -140,12 +141,12 @@ func (c *Client) UpdatePipedriveSource(payload SourcePipedrive) (SourcePipedrive
 	}
 }
 
-func (c *Client) DeletePipedriveSource(sourceId string) error {
-	//logger := fwhelpers.GetLogger()
+func (c *Client) DeleteZendeskSupportSource(sourceId string) error {
+	// logger := fwhelpers.GetLogger()
 
 	method := "DELETE"
 	url := c.Host + "/v1/sources/" + sourceId
-	sId := SourcePipedriveID{sourceId}
+	sId := SourceZendeskSupportID{sourceId}
 	body, err := json.Marshal(sId)
 	if err != nil {
 		return err

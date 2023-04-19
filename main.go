@@ -11,5 +11,14 @@ import (
 var version string
 
 func main() {
-	server.Serve(version, plugin.NewProvider, []func() schema.ResourceService{})
+	server.Serve(version, plugin.NewProvider, []func() schema.ResourceService{
+
+		plugin.NewsourcePipedriveResource,
+		plugin.NewsourceStripeResource,
+		plugin.NewsourceAmplitudeResource,
+		plugin.NewsourceShopifyResource,
+		plugin.NewsourceFreshdeskResource,
+		plugin.NewsourceZendeskSupportResource,
+		plugin.NewsourceHubspotResource,
+	})
 }
