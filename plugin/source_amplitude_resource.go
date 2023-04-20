@@ -142,7 +142,6 @@ func (r *sourceAmplitudeResource) Create(req *schema.ServiceRequest) *schema.Ser
 	// logger := fwhelpers.GetLogger()
 
 	// Retrieve values from plan
-	fmt.Printf("creating Amplitude Source %#v", req)
 	var plan sourceAmplitudeResourceModel
 	err := fwhelpers.UnpackModel(req.PlanContents, &plan)
 	if err != nil {

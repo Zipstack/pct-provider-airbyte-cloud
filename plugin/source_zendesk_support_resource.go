@@ -119,7 +119,7 @@ func (r *sourceZendeskSupportResource) Schema() *schema.ServiceResponse {
 					},
 					"credentials": &schema.MapAttribute{
 						Description: "Credentials",
-
+						Required:    true,
 						Attributes: map[string]schema.Attribute{
 							"credentials": &schema.StringAttribute{
 								Description: "credentials",
@@ -132,6 +132,7 @@ func (r *sourceZendeskSupportResource) Schema() *schema.ServiceResponse {
 							"api_token": &schema.StringAttribute{
 								Description: "Api Token",
 								Required:    true,
+								Sensitive:   true,
 							},
 						},
 					},
@@ -155,7 +156,6 @@ func (r *sourceZendeskSupportResource) Create(req *schema.ServiceRequest) *schem
 	// logger := fwhelpers.GetLogger()
 
 	// Retrieve values from plan
-	fmt.Printf("creating ZendeskSupport Source %#v", req)
 	var plan sourceZendeskSupportResourceModel
 	err := fwhelpers.UnpackModel(req.PlanContents, &plan)
 	if err != nil {

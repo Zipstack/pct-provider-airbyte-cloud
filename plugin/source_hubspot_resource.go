@@ -140,7 +140,6 @@ func (r *sourceHubspotResource) Create(req *schema.ServiceRequest) *schema.Servi
 	// logger := fwhelpers.GetLogger()
 
 	// Retrieve values from plan
-	fmt.Printf("creating Hubspot Source %#v", req)
 	var plan sourceHubspotResourceModel
 	err := fwhelpers.UnpackModel(req.PlanContents, &plan)
 	if err != nil {

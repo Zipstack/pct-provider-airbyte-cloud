@@ -136,7 +136,6 @@ func (r *sourceFreshdeskResource) Create(req *schema.ServiceRequest) *schema.Ser
 	// logger := fwhelpers.GetLogger()
 
 	// Retrieve values from plan
-	fmt.Printf("creating Freshdesk Source %#v", req)
 	var plan sourceFreshdeskResourceModel
 	err := fwhelpers.UnpackModel(req.PlanContents, &plan)
 	if err != nil {

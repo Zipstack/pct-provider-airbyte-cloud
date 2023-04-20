@@ -140,7 +140,6 @@ func (r *sourceStripeResource) Create(req *schema.ServiceRequest) *schema.Servic
 	// logger := fwhelpers.GetLogger()
 
 	// Retrieve values from plan
-	fmt.Printf("creating Stripe Source %#v", req)
 	var plan sourceStripeResourceModel
 	err := fwhelpers.UnpackModel(req.PlanContents, &plan)
 	if err != nil {
