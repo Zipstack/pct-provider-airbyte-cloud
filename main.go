@@ -20,5 +20,8 @@ func main() {
 		plugin.NewsourceFreshdeskResource,
 		plugin.NewsourceZendeskSupportResource,
 		plugin.NewsourceHubspotResource,
+		plugin.NewsourceGoogleAnalyticsV4Resource,
+		plugin.NewsourceGoogleSheetsResource,
+		plugin.NewsourceFacebookMarketingResource,
 	})
 }
