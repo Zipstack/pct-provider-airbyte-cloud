@@ -37,7 +37,7 @@ var (
 )
 
 // Helper function to return a resource service instance.
-func NewsourceAmplitudeResource() schema.ResourceService {
+func NewSourceAmplitudeResource() schema.ResourceService {
 	return &sourceAmplitudeResource{}
 }
 

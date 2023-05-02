@@ -42,7 +42,7 @@ var (
 )
 
 // Helper function to return a resource service instance.
-func NewsourceShopifyResource() schema.ResourceService {
+func NewSourceShopifyResource() schema.ResourceService {
 	return &sourceShopifyResource{}
 }
 

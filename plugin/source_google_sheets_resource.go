@@ -39,7 +39,7 @@ var (
 )
 
 // Helper function to return a resource service instance.
-func NewsourceGoogleSheetsResource() schema.ResourceService {
+func NewSourceGoogleSheetsResource() schema.ResourceService {
 	return &sourceGoogleSheetsResource{}
 }
 

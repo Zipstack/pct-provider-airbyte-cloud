@@ -36,7 +36,7 @@ var (
 )
 
 // Helper function to return a resource service instance.
-func NewsourceFreshdeskResource() schema.ResourceService {
+func NewSourceFreshdeskResource() schema.ResourceService {
 	return &sourceFreshdeskResource{}
 }
 

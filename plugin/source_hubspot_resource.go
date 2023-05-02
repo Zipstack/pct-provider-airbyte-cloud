@@ -39,7 +39,7 @@ var (
 )
 
 // Helper function to return a resource service instance.
-func NewsourceHubspotResource() schema.ResourceService {
+func NewSourceHubspotResource() schema.ResourceService {
 	return &sourceHubspotResource{}
 }
 

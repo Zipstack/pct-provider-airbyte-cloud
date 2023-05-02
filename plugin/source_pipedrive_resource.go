@@ -39,7 +39,7 @@ var (
 )
 
 // Helper function to return a resource service instance.
-func NewsourcePipedriveResource() schema.ResourceService {
+func NewSourcePipedriveResource() schema.ResourceService {
 	return &sourcePipedriveResource{}
 }
 

@@ -41,7 +41,7 @@ var (
 )
 
 // Helper function to return a resource service instance.
-func NewsourceGoogleAnalyticsV4Resource() schema.ResourceService {
+func NewSourceGoogleAnalyticsV4Resource() schema.ResourceService {
 	return &sourceGoogleAnalyticsV4Resource{}
 }
 

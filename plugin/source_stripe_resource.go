@@ -37,7 +37,7 @@ var (
 )
 
 // Helper function to return a resource service instance.
-func NewsourceStripeResource() schema.ResourceService {
+func NewSourceStripeResource() schema.ResourceService {
 	return &sourceStripeResource{}
 }
 

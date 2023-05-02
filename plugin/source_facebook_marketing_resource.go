@@ -44,7 +44,7 @@ var (
 )
 
 // Helper function to return a resource service instance.
-func NewsourceFacebookMarketingResource() schema.ResourceService {
+func NewSourceFacebookMarketingResource() schema.ResourceService {
 	return &sourceFacebookMarketingResource{}
 }
 

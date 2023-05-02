@@ -3,8 +3,6 @@ package api
 import (
 	"encoding/json"
 	"fmt"
-
-	"github.com/zipstack/pct-plugin-framework/fwhelpers"
 )
 
 type SourceFacebookMarketingID struct {
@@ -35,7 +33,7 @@ type SourceFacebookMarketingConnConfig struct {
 }
 
 func (c *Client) CreateFacebookMarketingSource(payload SourceFacebookMarketing) (SourceFacebookMarketing, error) {
-	logger := fwhelpers.GetLogger()
+	// logger := fwhelpers.GetLogger()
 	method := "POST"
 	url := c.Host + "/v1/sources"
 	body, err := json.Marshal(payload)
@@ -44,8 +42,6 @@ func (c *Client) CreateFacebookMarketingSource(payload SourceFacebookMarketing) 
 	}
 
 	b, statusCode, _, _, err := c.doRequest(method, url, body, nil)
-
-	logger.Printf("coming here with body %#v \nand response %#v", b, statusCode)
 
 	if err != nil {
 		return SourceFacebookMarketing{}, err
