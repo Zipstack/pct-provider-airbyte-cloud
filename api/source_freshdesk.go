@@ -3,6 +3,8 @@ package api
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/zipstack/pct-plugin-framework/fwhelpers"
 )
 
 type SourceFreshdeskID struct {
@@ -83,56 +85,10 @@ func (c *Client) ReadFreshdeskSource(sourceId string) (SourceFreshdesk, error) {
 }
 
 func (c *Client) UpdateFreshdeskSource(payload SourceFreshdesk) (SourceFreshdesk, error) {
-	// logger := fwhelpers.GetLogger()
+	logger := fwhelpers.GetLogger()
 
-	/*method := "PUT"
-	url := c.Host + "/v1/sources/" + payload.SourceId
-	body, err := json.Marshal(payload)
-	if err != nil {
-		return SourceFreshdesk{}, err
-	}
-
-	b, statusCode, _, _, err := c.doRequest(method, url, body, nil)
-	if err != nil {
-		return SourceFreshdesk{}, err
-	}
-
-	source := SourceFreshdesk{}
-	if statusCode >= 200 && statusCode <= 299 {
-		err = json.Unmarshal(b, &source)
-		return source, err
-	} else {
-		msg, err := c.getAPIError(b)
-		if err != nil {
-			return source, err
-		} else {
-			return source, fmt.Errorf(msg)
-		}
-	}*/
-	method := "GET"
-	url := c.Host + "/v1/sources/" + payload.SourceId
-	// sId := SourceFreshdeskID{sourceId}
-	// body, err := json.Marshal(sId)
-	// if err != nil {
-	// 	return SourceFreshdesk{}, err
-	// }
-	b, statusCode, _, _, err := c.doRequest(method, url, []byte{}, nil)
-	if err != nil {
-		return SourceFreshdesk{}, err
-	}
-
-	source := SourceFreshdesk{}
-	if statusCode >= 200 && statusCode <= 299 {
-		err = json.Unmarshal(b, &source)
-		return source, err
-	} else {
-		msg, err := c.getAPIError(b)
-		if err != nil {
-			return source, err
-		} else {
-			return source, fmt.Errorf(msg)
-		}
-	}
+	logger.Print("[yellow]Update api is not yet exposed from Airbyte-Cloud[reset]")
+	return SourceFreshdesk{}, nil
 }
 
 func (c *Client) DeleteFreshdeskSource(sourceId string) error {

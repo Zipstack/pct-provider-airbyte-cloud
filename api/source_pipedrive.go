@@ -3,6 +3,8 @@ package api
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/zipstack/pct-plugin-framework/fwhelpers"
 )
 
 type SourcePipedriveID struct {
@@ -86,58 +88,10 @@ func (c *Client) ReadPipedriveSource(sourceId string) (SourcePipedrive, error) {
 }
 
 func (c *Client) UpdatePipedriveSource(payload SourcePipedrive) (SourcePipedrive, error) {
-	// logger := fwhelpers.GetLogger()
+	logger := fwhelpers.GetLogger()
 
-	/*method := "PUT"
-	url := c.Host + "/v1/sources/" + payload.SourceId
-	body, err := json.Marshal(payload)
-	if err != nil {
-		return SourcePipedrive{}, err
-	}
-
-	b, statusCode, _, _, err := c.doRequest(method, url, body, nil)
-	if err != nil {
-		return SourcePipedrive{}, err
-	}
-
-	source := SourcePipedrive{}
-	if statusCode >= 200 && statusCode <= 299 {
-		err = json.Unmarshal(b, &source)
-		return source, err
-	} else {
-		msg, err := c.getAPIError(b)
-		if err != nil {
-			return source, err
-		} else {
-			return source, fmt.Errorf(msg)
-		}
-	}*/
-
-	method := "GET"
-	url := c.Host + "/v1/sources/" + payload.SourceId
-	// sId := SourceStripeID{sourceId}
-	// body, err := json.Marshal(sId)
-	// if err != nil {
-	// 	return SourceStripe{}, err
-	// }
-
-	b, statusCode, _, _, err := c.doRequest(method, url, []byte{}, nil)
-	if err != nil {
-		return SourcePipedrive{}, err
-	}
-
-	source := SourcePipedrive{}
-	if statusCode >= 200 && statusCode <= 299 {
-		err = json.Unmarshal(b, &source)
-		return source, err
-	} else {
-		msg, err := c.getAPIError(b)
-		if err != nil {
-			return source, err
-		} else {
-			return source, fmt.Errorf(msg)
-		}
-	}
+	logger.Print("[yellow]Update api is not yet exposed from Airbyte-Cloud[reset]")
+	return SourcePipedrive{}, nil
 }
 
 func (c *Client) DeletePipedriveSource(sourceId string) error {

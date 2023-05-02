@@ -3,6 +3,8 @@ package api
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/zipstack/pct-plugin-framework/fwhelpers"
 )
 
 type SourceGoogleAnalyticsV4ID struct {
@@ -88,56 +90,10 @@ func (c *Client) ReadGoogleAnalyticsV4Source(sourceId string) (SourceGoogleAnaly
 }
 
 func (c *Client) UpdateGoogleAnalyticsV4Source(payload SourceGoogleAnalyticsV4) (SourceGoogleAnalyticsV4, error) {
-	// logger := fwhelpers.GetLogger()
+	logger := fwhelpers.GetLogger()
 
-	/*method := "PUT"
-	url := c.Host + "/v1/sources/" + payload.SourceId
-	body, err := json.Marshal(payload)
-	if err != nil {
-		return SourceGoogleAnalyticsV4{}, err
-	}
-
-	b, statusCode, _, _, err := c.doRequest(method, url, body, nil)
-	if err != nil {
-		return SourceGoogleAnalyticsV4{}, err
-	}
-
-	source := SourceGoogleAnalyticsV4{}
-	if statusCode >= 200 && statusCode <= 299 {
-		err = json.Unmarshal(b, &source)
-		return source, err
-	} else {
-		msg, err := c.getAPIError(b)
-		if err != nil {
-			return source, err
-		} else {
-			return source, fmt.Errorf(msg)
-		}
-	}*/
-	method := "GET"
-	url := c.Host + "/v1/sources/" + payload.SourceId
-	// sId := SourceGoogleAnalyticsV4ID{sourceId}
-	// body, err := json.Marshal(sId)
-	// if err != nil {
-	// 	return SourceGoogleAnalyticsV4{}, err
-	// }
-	b, statusCode, _, _, err := c.doRequest(method, url, []byte{}, nil)
-	if err != nil {
-		return SourceGoogleAnalyticsV4{}, err
-	}
-
-	source := SourceGoogleAnalyticsV4{}
-	if statusCode >= 200 && statusCode <= 299 {
-		err = json.Unmarshal(b, &source)
-		return source, err
-	} else {
-		msg, err := c.getAPIError(b)
-		if err != nil {
-			return source, err
-		} else {
-			return source, fmt.Errorf(msg)
-		}
-	}
+	logger.Print("[yellow]Update api is not yet exposed from Airbyte-Cloud[reset]")
+	return SourceGoogleAnalyticsV4{}, nil
 }
 
 func (c *Client) DeleteGoogleAnalyticsV4Source(sourceId string) error {
