@@ -17,9 +17,7 @@ type Provider struct {
 
 // Model maps the provider state as per schema.
 type ProviderModel struct {
-	Host string `cty:"host"`
-	// Email         string `cty:"email"`
-	// Password      string `cty:"password"`
+	Host          string `cty:"host"`
 	Authorization string `cty:"authorization"`
 }
 
@@ -49,16 +47,7 @@ func (p *Provider) Schema() *schema.ServiceResponse {
 				Description: "URI for Airbyte API. May also be provided via AIRBYTE_HOST environment variable.",
 				Required:    true,
 			},
-			// "email": &schema.StringAttribute{
-			// 	Description: "Basic auth username for Airbyte API. May also be provided via AIRBYTE_USERNAME environment variable.",
-			// 	Required:    true,
-			// 	Sensitive:   true,
-			// },
-			// "password": &schema.StringAttribute{
-			// 	Description: "Basic auth password for Airbyte API. May also be provided via AIRBYTE_PASSWORD environment variable.",
-			// 	Required:    true,
-			// 	Sensitive:   true,
-			// },
+
 			"authorization": &schema.StringAttribute{
 				Description: "Bearer Token for airbyte provider",
 				Required:    true,
@@ -101,9 +90,7 @@ func (p *Provider) Configure(req *schema.ServiceRequest) *schema.ServiceResponse
 
 	// Make API creds available for Resource type Configure methods.
 	creds := map[string]string{
-		"host": pm.Host,
-		// "email":    pm.Email,
-		// "password": pm.Password,
+		"host":          pm.Host,
 		"authorization": pm.Authorization,
 	}
 	cEnc, err := fwhelpers.Encode(creds)
