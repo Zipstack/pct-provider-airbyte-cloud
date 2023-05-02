@@ -59,11 +59,6 @@ func (c *Client) ReadFreshdeskSource(sourceId string) (SourceFreshdesk, error) {
 
 	method := "GET"
 	url := c.Host + "/v1/sources/" + sourceId
-	// sId := SourceFreshdeskID{sourceId}
-	// body, err := json.Marshal(sId)
-	// if err != nil {
-	// 	return SourceFreshdesk{}, err
-	// }
 
 	b, statusCode, _, _, err := c.doRequest(method, url, []byte{}, nil)
 	if err != nil {

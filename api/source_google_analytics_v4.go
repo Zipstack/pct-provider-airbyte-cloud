@@ -64,11 +64,6 @@ func (c *Client) ReadGoogleAnalyticsV4Source(sourceId string) (SourceGoogleAnaly
 
 	method := "GET"
 	url := c.Host + "/v1/sources/" + sourceId
-	// sId := SourceGoogleAnalyticsV4ID{sourceId}
-	// body, err := json.Marshal(sId)
-	// if err != nil {
-	// 	return SourceGoogleAnalyticsV4{}, err
-	// }
 
 	b, statusCode, _, _, err := c.doRequest(method, url, []byte{}, nil)
 	if err != nil {

@@ -61,11 +61,6 @@ func (c *Client) ReadHubspotSource(sourceId string) (SourceHubspot, error) {
 
 	method := "GET"
 	url := c.Host + "/v1/sources/" + sourceId
-	// sId := SourceHubspotID{sourceId}
-	// body, err := json.Marshal(sId)
-	// if err != nil {
-	// 	return SourceHubspot{}, err
-	// }
 
 	b, statusCode, _, _, err := c.doRequest(method, url, []byte{}, nil)
 	if err != nil {

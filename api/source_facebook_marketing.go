@@ -68,11 +68,6 @@ func (c *Client) ReadFacebookMarketingSource(sourceId string) (SourceFacebookMar
 
 	method := "GET"
 	url := c.Host + "/v1/sources/" + sourceId
-	// sId := SourceFacebookMarketingID{sourceId}
-	// body, err := json.Marshal(sId)
-	// if err != nil {
-	// 	return SourceFacebookMarketing{}, err
-	// }
 
 	b, statusCode, _, _, err := c.doRequest(method, url, []byte{}, nil)
 	if err != nil {

@@ -62,11 +62,6 @@ func (c *Client) ReadGoogleSheetsSource(sourceId string) (SourceGoogleSheets, er
 
 	method := "GET"
 	url := c.Host + "/v1/sources/" + sourceId
-	// sId := SourceGoogleSheetsID{sourceId}
-	// body, err := json.Marshal(sId)
-	// if err != nil {
-	// 	return SourceGoogleSheets{}, err
-	// }
 
 	b, statusCode, _, _, err := c.doRequest(method, url, []byte{}, nil)
 	if err != nil {

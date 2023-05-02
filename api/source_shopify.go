@@ -65,12 +65,6 @@ func (c *Client) ReadShopifySource(sourceId string) (SourceShopify, error) {
 	method := "GET"
 	url := c.Host + "/v1/sources/" + sourceId
 
-	// sId := SourceShopifyID{sourceId}
-	// body, err := json.Marshal(sId)
-	// if err != nil {
-	// 	return SourceShopify{}, err
-	// }
-
 	b, statusCode, _, _, err := c.doRequest(method, url, []byte{}, nil)
 	if err != nil {
 		return SourceShopify{}, err

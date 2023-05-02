@@ -62,11 +62,6 @@ func (c *Client) ReadPipedriveSource(sourceId string) (SourcePipedrive, error) {
 
 	method := "GET"
 	url := c.Host + "/v1/sources/" + sourceId
-	//sId := SourcePipedriveID{sourceId}
-	//body, err := json.Marshal(sId)
-	// if err != nil {
-	// 	return SourcePipedrive{}, err
-	// }
 
 	b, statusCode, _, _, err := c.doRequest(method, url, []byte{}, nil)
 	if err != nil {

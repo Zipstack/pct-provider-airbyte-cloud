@@ -60,11 +60,6 @@ func (c *Client) ReadAmplitudeSource(sourceId string) (SourceAmplitude, error) {
 
 	method := "GET"
 	url := c.Host + "/v1/sources/" + sourceId
-	// sId := SourceAmplitudeID{sourceId}
-	// body, err := json.Marshal(sId)
-	// if err != nil {
-	// 	return SourceAmplitude{}, err
-	// }
 
 	b, statusCode, _, _, err := c.doRequest(method, url, []byte{}, nil)
 	if err != nil {

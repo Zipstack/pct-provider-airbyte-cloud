@@ -65,11 +65,6 @@ func (c *Client) ReadZendeskSupportSource(sourceId string) (SourceZendeskSupport
 
 	method := "GET"
 	url := c.Host + "/v1/sources/" + sourceId
-	// sId := SourceZendeskSupportID{sourceId}
-	// body, err := json.Marshal(sId)
-	// if err != nil {
-	// 	return SourceZendeskSupport{}, err
-	// }
 
 	b, statusCode, _, _, err := c.doRequest(method, url, []byte{}, nil)
 	if err != nil {
