@@ -16,23 +16,23 @@ type sourceGoogleAnalyticsV4Resource struct {
 }
 
 type sourceGoogleAnalyticsV4ResourceModel struct {
-	Name                    string                                 `cty:"name"`
-	SourceId                string                                 `cty:"source_id"`
-	WorkspaceId             string                                 `cty:"workspace_id"`
-	ConnectionConfiguration sourceGoogleAnalyticsV4ConnConfigModel `cty:"configuration"`
+	Name                    string                                 `pctsdk:"name"`
+	SourceId                string                                 `pctsdk:"source_id"`
+	WorkspaceId             string                                 `pctsdk:"workspace_id"`
+	ConnectionConfiguration sourceGoogleAnalyticsV4ConnConfigModel `pctsdk:"configuration"`
 }
 
 type sourceGoogleAnalyticsV4ConnConfigModel struct {
-	SourceType    string                           `cty:"source_type"`
-	StartDate     string                           `cty:"start_date"`
-	WindowInDays  int                              `cty:"window_in_days"`
-	ViewId        string                           `cty:"view_id"`
-	CustomReports string                           `cty:"custom_reports"`
-	Credentials   googleAnalyticsV4CredConfigModel `cty:"credentials"`
+	SourceType    string                           `pctsdk:"source_type"`
+	StartDate     string                           `pctsdk:"start_date"`
+	WindowInDays  int                              `pctsdk:"window_in_days"`
+	ViewId        string                           `pctsdk:"view_id"`
+	CustomReports string                           `pctsdk:"custom_reports"`
+	Credentials   googleAnalyticsV4CredConfigModel `pctsdk:"credentials"`
 }
 type googleAnalyticsV4CredConfigModel struct {
-	AuthType        string `cty:"auth_type"`
-	CredentialsJson string `cty:"credentials_json"`
+	AuthType        string `pctsdk:"auth_type"`
+	CredentialsJson string `pctsdk:"credentials_json"`
 }
 
 // Ensure the implementation satisfies the expected interfaces.
@@ -114,11 +114,13 @@ func (r *sourceGoogleAnalyticsV4Resource) Schema() *schema.ServiceResponse {
 					},
 					"window_in_days": &schema.IntAttribute{
 						Description: "window in days",
-						Required:    false,
+						Required:    true,
+						Optional:    true,
 					},
 					"custom_reports": &schema.StringAttribute{
 						Description: "custom reports",
-						Required:    false,
+						Required:    true,
+						Optional:    true,
 					},
 					"credentials": &schema.MapAttribute{
 						Description: "credentials",

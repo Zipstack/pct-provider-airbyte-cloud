@@ -16,19 +16,19 @@ type sourceAmplitudeResource struct {
 }
 
 type sourceAmplitudeResourceModel struct {
-	Name                    string                         `cty:"name"`
-	SourceId                string                         `cty:"source_id"`
-	WorkspaceId             string                         `cty:"workspace_id"`
-	ConnectionConfiguration sourceAmplitudeConnConfigModel `cty:"configuration"`
+	Name                    string                         `pctsdk:"name"`
+	SourceId                string                         `pctsdk:"source_id"`
+	WorkspaceId             string                         `pctsdk:"workspace_id"`
+	ConnectionConfiguration sourceAmplitudeConnConfigModel `pctsdk:"configuration"`
 }
 
 type sourceAmplitudeConnConfigModel struct {
-	SourceType       string `cty:"source_type"`
-	StartDate        string `cty:"start_date"`
-	DataRegion       string `cty:"data_region"`
-	RequestTimeRange int    `cty:"request_time_range"`
-	ApiKey           string `cty:"api_key"`
-	SecretKey        string `cty:"secret_key"`
+	SourceType       string `pctsdk:"source_type"`
+	StartDate        string `pctsdk:"start_date"`
+	DataRegion       string `pctsdk:"data_region"`
+	RequestTimeRange int    `pctsdk:"request_time_range"`
+	ApiKey           string `pctsdk:"api_key"`
+	SecretKey        string `pctsdk:"secret_key"`
 }
 
 // Ensure the implementation satisfies the expected interfaces.
@@ -106,11 +106,13 @@ func (r *sourceAmplitudeResource) Schema() *schema.ServiceResponse {
 					},
 					"data_region": &schema.StringAttribute{
 						Description: "Date Region",
-						Required:    false,
+						Optional:    true,
+						Required:    true,
 					},
 					"request_time_range": &schema.IntAttribute{
 						Description: "Required time range",
 						Optional:    true,
+						Required:    true,
 					},
 					"secret_key": &schema.StringAttribute{
 						Description: "Secret Key",

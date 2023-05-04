@@ -16,21 +16,21 @@ type sourceGoogleSheetsResource struct {
 }
 
 type sourceGoogleSheetsResourceModel struct {
-	Name                    string                            `cty:"name"`
-	SourceId                string                            `cty:"source_id"`
-	WorkspaceId             string                            `cty:"workspace_id"`
-	ConnectionConfiguration sourceGoogleSheetsConnConfigModel `cty:"configuration"`
+	Name                    string                            `pctsdk:"name"`
+	SourceId                string                            `pctsdk:"source_id"`
+	WorkspaceId             string                            `pctsdk:"workspace_id"`
+	ConnectionConfiguration sourceGoogleSheetsConnConfigModel `pctsdk:"configuration"`
 }
 
 type sourceGoogleSheetsConnConfigModel struct {
-	SourceType    string                      `cty:"source_type"`
-	RowBatchSize  int                         `cty:"row_batch_size"`
-	SpreadsheetId string                      `cty:"spreadsheet_id"`
-	Credentials   googleSheetsCredConfigModel `cty:"credentials"`
+	SourceType    string                      `pctsdk:"source_type"`
+	RowBatchSize  int                         `pctsdk:"row_batch_size"`
+	SpreadsheetId string                      `pctsdk:"spreadsheet_id"`
+	Credentials   googleSheetsCredConfigModel `pctsdk:"credentials"`
 }
 type googleSheetsCredConfigModel struct {
-	AuthType           string `cty:"auth_type"`
-	ServiceAccountInfo string `cty:"service_account_info"`
+	AuthType           string `pctsdk:"auth_type"`
+	ServiceAccountInfo string `pctsdk:"service_account_info"`
 }
 
 // Ensure the implementation satisfies the expected interfaces.
@@ -104,7 +104,8 @@ func (r *sourceGoogleSheetsResource) Schema() *schema.ServiceResponse {
 					},
 					"row_batch_size": &schema.IntAttribute{
 						Description: "Row Batch Size",
-						Required:    false,
+						Required:    true,
+						Optional:    true,
 					},
 					"spreadsheet_id": &schema.StringAttribute{
 						Description: "Spreadsheet Id",

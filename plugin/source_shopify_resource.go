@@ -16,24 +16,24 @@ type sourceShopifyResource struct {
 }
 
 type sourceShopifyResourceModel struct {
-	Name                    string                  `cty:"name"`
-	SourceId                string                  `cty:"source_id"`
-	WorkspaceId             string                  `cty:"workspace_id"`
-	ConnectionConfiguration SourceShopifyConnConfig `cty:"configuration"`
+	Name                    string                  `pctsdk:"name"`
+	SourceId                string                  `pctsdk:"source_id"`
+	WorkspaceId             string                  `pctsdk:"workspace_id"`
+	ConnectionConfiguration SourceShopifyConnConfig `pctsdk:"configuration"`
 }
 
 type SourceShopifyConnConfig struct {
-	SourceType  string                 `cty:"source_type"`
-	StartDate   string                 `cty:"start_date"`
-	Shop        string                 `cty:"shop"`
-	Credentials ShopifyCredConfigModel `cty:"credentials"`
+	SourceType  string                 `pctsdk:"source_type"`
+	StartDate   string                 `pctsdk:"start_date"`
+	Shop        string                 `pctsdk:"shop"`
+	Credentials ShopifyCredConfigModel `pctsdk:"credentials"`
 }
 type ShopifyCredConfigModel struct {
-	AuthMethod  string `cty:"auth_method"`
-	ApiPassword string `cty:"api_password"`
-	// ClientSecret string `cty:"client_secret"`
-	// AccessToken  string `cty:"access_token"`
-	// ClientId     string `cty:"client_id"`
+	AuthMethod  string `pctsdk:"auth_method"`
+	ApiPassword string `pctsdk:"api_password"`
+	// ClientSecret string `pctsdk:"client_secret"`
+	// AccessToken  string `pctsdk:"access_token"`
+	// ClientId     string `pctsdk:"client_id"`
 }
 
 // Ensure the implementation satisfies the expected interfaces.
@@ -115,6 +115,7 @@ func (r *sourceShopifyResource) Schema() *schema.ServiceResponse {
 					},
 					"credentials": &schema.MapAttribute{
 						Description: "credentials",
+						Required:    true,
 						Attributes: map[string]schema.Attribute{
 							"auth_method": &schema.StringAttribute{
 								Description: "auth_method",

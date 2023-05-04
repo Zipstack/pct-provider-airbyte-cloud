@@ -16,21 +16,21 @@ type sourceHubspotResource struct {
 }
 
 type sourceHubspotResourceModel struct {
-	Name                    string                       `cty:"name"`
-	SourceId                string                       `cty:"source_id"`
-	WorkspaceId             string                       `cty:"workspace_id"`
-	ConnectionConfiguration sourceHubspotConnConfigModel `cty:"configuration"`
+	Name                    string                       `pctsdk:"name"`
+	SourceId                string                       `pctsdk:"source_id"`
+	WorkspaceId             string                       `pctsdk:"workspace_id"`
+	ConnectionConfiguration sourceHubspotConnConfigModel `pctsdk:"configuration"`
 }
 
 type sourceHubspotConnConfigModel struct {
-	SourceType  string                 `cty:"source_type"`
-	StartDate   string                 `cty:"start_date"`
-	Credentials hubspotCredConfigModel `cty:"credentials"`
+	SourceType  string                 `pctsdk:"source_type"`
+	StartDate   string                 `pctsdk:"start_date"`
+	Credentials hubspotCredConfigModel `pctsdk:"credentials"`
 }
 
 type hubspotCredConfigModel struct {
-	CredentialsTitle string `cty:"credentials_title"`
-	AccessToken      string `cty:"access_token"`
+	CredentialsTitle string `pctsdk:"credentials_title"`
+	AccessToken      string `pctsdk:"access_token"`
 }
 
 // Ensure the implementation satisfies the expected interfaces.
@@ -108,6 +108,7 @@ func (r *sourceHubspotResource) Schema() *schema.ServiceResponse {
 					},
 					"credentials": &schema.MapAttribute{
 						Description: "credentials",
+						Required:    true,
 						Attributes: map[string]schema.Attribute{
 							"credentials_title": &schema.StringAttribute{
 								Description: "credentials title",

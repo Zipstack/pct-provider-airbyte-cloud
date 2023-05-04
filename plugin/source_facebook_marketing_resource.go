@@ -16,26 +16,26 @@ type sourceFacebookMarketingResource struct {
 }
 
 type sourceFacebookMarketingResourceModel struct {
-	Name                    string                                 `cty:"name"`
-	SourceId                string                                 `cty:"source_id"`
-	WorkspaceId             string                                 `cty:"workspace_id"`
-	ConnectionConfiguration sourceFacebookMarketingConnConfigModel `cty:"configuration"`
+	Name                    string                                 `pctsdk:"name"`
+	SourceId                string                                 `pctsdk:"source_id"`
+	WorkspaceId             string                                 `pctsdk:"workspace_id"`
+	ConnectionConfiguration sourceFacebookMarketingConnConfigModel `pctsdk:"configuration"`
 }
 
 type sourceFacebookMarketingConnConfigModel struct {
-	SourceType  string `cty:"source_type"`
-	AccountId   string `cty:"account_id"`
-	StartDate   string `cty:"start_date"`
-	AccessToken string `cty:"access_token"`
+	SourceType  string `pctsdk:"source_type"`
+	AccountId   string `pctsdk:"account_id"`
+	StartDate   string `pctsdk:"start_date"`
+	AccessToken string `pctsdk:"access_token"`
 
-	EndDate              string `cty:"end_date"`
-	IncludeDeleted       bool   `cty:"include_deleted"`
-	FetchThumbnailImages bool   `cty:"fetch_thumbnail_images"`
-	//CustomInsights       any    `cty:"custom_insights"`
-	PageSize                   int  `cty:"page_size"`
-	InsightsLookbackWindow     int  `cty:"insights_lookback_window"`
-	MaxBatchSize               int  `cty:"max_batch_size"`
-	ActionBreakdownsAllowEmpty bool `cty:"action_breakdowns_allow_empty"`
+	EndDate              string `pctsdk:"end_date"`
+	IncludeDeleted       bool   `pctsdk:"include_deleted"`
+	FetchThumbnailImages bool   `pctsdk:"fetch_thumbnail_images"`
+	//CustomInsights       any    `pctsdk:"custom_insights"`
+	PageSize                   int  `pctsdk:"page_size"`
+	InsightsLookbackWindow     int  `pctsdk:"insights_lookback_window"`
+	MaxBatchSize               int  `pctsdk:"max_batch_size"`
+	ActionBreakdownsAllowEmpty bool `pctsdk:"action_breakdowns_allow_empty"`
 }
 
 // Ensure the implementation satisfies the expected interfaces.

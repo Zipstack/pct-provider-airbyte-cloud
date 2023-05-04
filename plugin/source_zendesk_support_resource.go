@@ -16,24 +16,24 @@ type sourceZendeskSupportResource struct {
 }
 
 type sourceZendeskSupportResourceModel struct {
-	Name                    string                              `cty:"name"`
-	SourceId                string                              `cty:"source_id"`
-	WorkspaceId             string                              `cty:"workspace_id"`
-	ConnectionConfiguration sourceZendeskSupportConnConfigModel `cty:"configuration"`
+	Name                    string                              `pctsdk:"name"`
+	SourceId                string                              `pctsdk:"source_id"`
+	WorkspaceId             string                              `pctsdk:"workspace_id"`
+	ConnectionConfiguration sourceZendeskSupportConnConfigModel `pctsdk:"configuration"`
 }
 
 type sourceZendeskSupportConnConfigModel struct {
-	SourceType      string                         `cty:"source_type"`
-	StartDate       string                         `cty:"start_date"`
-	IgnorPagination bool                           `cty:"ignore_pagination"`
-	Subdomain       string                         `cty:"subdomain"`
-	Credentials     SourceZendeskSupportCredConfig `cty:"credentials"`
+	SourceType      string                         `pctsdk:"source_type"`
+	StartDate       string                         `pctsdk:"start_date"`
+	IgnorPagination bool                           `pctsdk:"ignore_pagination"`
+	Subdomain       string                         `pctsdk:"subdomain"`
+	Credentials     SourceZendeskSupportCredConfig `pctsdk:"credentials"`
 }
 
 type SourceZendeskSupportCredConfig struct {
-	Credentials string `cty:"credentials"`
-	Email       string `cty:"email"`
-	ApiToken    string `cty:"api_token"`
+	Credentials string `pctsdk:"credentials"`
+	Email       string `pctsdk:"email"`
+	ApiToken    string `pctsdk:"api_token"`
 }
 
 // Ensure the implementation satisfies the expected interfaces.
@@ -112,6 +112,7 @@ func (r *sourceZendeskSupportResource) Schema() *schema.ServiceResponse {
 					"ignore_pagination": &schema.BoolAttribute{
 						Description: "Ignore Pagination",
 						Optional:    true,
+						Required:    true,
 					},
 					"subdomain": &schema.StringAttribute{
 						Description: "SubDomain",

@@ -16,19 +16,19 @@ type sourceStripeResource struct {
 }
 
 type sourceStripeResourceModel struct {
-	Name                    string                      `cty:"name"`
-	SourceId                string                      `cty:"source_id"`
-	WorkspaceId             string                      `cty:"workspace_id"`
-	ConnectionConfiguration sourceStripeConnConfigModel `cty:"configuration"`
+	Name                    string                      `pctsdk:"name"`
+	SourceId                string                      `pctsdk:"source_id"`
+	WorkspaceId             string                      `pctsdk:"workspace_id"`
+	ConnectionConfiguration sourceStripeConnConfigModel `pctsdk:"configuration"`
 }
 
 type sourceStripeConnConfigModel struct {
-	SourceType         string `cty:"source_type"`
-	StartDate          string `cty:"start_date"`
-	LookbackWindowDays int    `cty:"lookback_window_days"`
-	SliceRange         int    `cty:"slice_range"`
-	ClientSecret       string `cty:"client_secret"`
-	AccountId          string `cty:"account_id"`
+	SourceType         string `pctsdk:"source_type"`
+	StartDate          string `pctsdk:"start_date"`
+	LookbackWindowDays int    `pctsdk:"lookback_window_days"`
+	SliceRange         int    `pctsdk:"slice_range"`
+	ClientSecret       string `pctsdk:"client_secret"`
+	AccountId          string `pctsdk:"account_id"`
 }
 
 // Ensure the implementation satisfies the expected interfaces.
@@ -106,11 +106,13 @@ func (r *sourceStripeResource) Schema() *schema.ServiceResponse {
 					},
 					"slice_range": &schema.IntAttribute{
 						Description: "Slice Range",
-						Required:    false,
+						Optional:    true,
+						Required:    true,
 					},
 					"lookback_window_days": &schema.IntAttribute{
 						Description: "lookback window days",
-						Required:    false,
+						Required:    true,
+						Optional:    true,
 					},
 					"client_secret": &schema.StringAttribute{
 						Description: "Client Secret",
