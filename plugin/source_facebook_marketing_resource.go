@@ -100,7 +100,7 @@ func (r *sourceFacebookMarketingResource) Schema() *schema.ServiceResponse {
 			},
 			"configuration": &schema.MapAttribute{
 				Description: "Connection configuration",
-				// Required:    true,
+				Required:    true,
 				//Sensitive:   true,
 				Attributes: map[string]schema.Attribute{
 					"source_type": &schema.StringAttribute{
@@ -123,30 +123,37 @@ func (r *sourceFacebookMarketingResource) Schema() *schema.ServiceResponse {
 					"end_date": &schema.StringAttribute{
 						Description: "end date",
 						Optional:    true,
+						Required:    true,
 					},
 					"include_deleted": &schema.BoolAttribute{
 						Description: "Include Deleted",
 						Optional:    true,
+						Required:    true,
 					},
 					"fetch_thumbnail_images": &schema.BoolAttribute{
 						Description: "Fetch Thumbnail Image",
 						Optional:    true,
+						Required:    true,
 					},
 					"page_size": &schema.IntAttribute{
 						Description: "Page Size",
 						Optional:    true,
+						Required:    true,
 					},
 					"insights_lookback_window": &schema.IntAttribute{
 						Description: "insights_lookback_window",
 						Optional:    true,
+						Required:    true,
 					},
 					"max_batch_size": &schema.IntAttribute{
 						Description: "Max Batch Size",
 						Optional:    true,
+						Required:    true,
 					},
 					"action_breakdowns_allow_empty": &schema.BoolAttribute{
 						Description: "Action Breakdowns Allow Empty",
 						Optional:    true,
+						Required:    true,
 					},
 				},
 			},
