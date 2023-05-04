@@ -17,8 +17,8 @@ type Provider struct {
 
 // Model maps the provider state as per schema.
 type ProviderModel struct {
-	Host          string `cty:"host"`
-	Authorization string `cty:"authorization"`
+	Host          string `pctsdk:"host"`
+	Authorization string `pctsdk:"authorization"`
 }
 
 // Ensure the implementation satisfies the expected interfaces
@@ -47,7 +47,6 @@ func (p *Provider) Schema() *schema.ServiceResponse {
 				Description: "URI for Airbyte API. May also be provided via AIRBYTE_HOST environment variable.",
 				Required:    true,
 			},
-
 			"authorization": &schema.StringAttribute{
 				Description: "Bearer Token for airbyte provider",
 				Required:    true,
@@ -72,7 +71,6 @@ func (p *Provider) Configure(req *schema.ServiceRequest) *schema.ServiceResponse
 	if err != nil {
 		return schema.ErrorResponse(err)
 	}
-
 	if pm.Host == "" || pm.Authorization == "" {
 		return schema.ErrorResponse(fmt.Errorf(
 			"invalid host or credentials received.\n" +

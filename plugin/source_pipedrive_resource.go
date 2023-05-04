@@ -16,21 +16,21 @@ type sourcePipedriveResource struct {
 }
 
 type sourcePipedriveResourceModel struct {
-	Name          string                         `cty:"name"`
-	SourceId      string                         `cty:"source_id"`
-	WorkspaceId   string                         `cty:"workspace_id"`
-	Configuration sourcePipedriveConnConfigModel `cty:"configuration"`
+	Name          string                         `pctsdk:"name"`
+	SourceId      string                         `pctsdk:"source_id"`
+	WorkspaceId   string                         `pctsdk:"workspace_id"`
+	Configuration sourcePipedriveConnConfigModel `pctsdk:"configuration"`
 }
 
 type sourcePipedriveConnConfigModel struct {
-	SourceType           string                         `cty:"source_type"`
-	ReplicationStartDate string                         `cty:"replication_start_date"`
-	Authorization        sourcePipedriveAuthConfigModel `cty:"authorization"`
+	SourceType           string                         `pctsdk:"source_type"`
+	ReplicationStartDate string                         `pctsdk:"replication_start_date"`
+	Authorization        sourcePipedriveAuthConfigModel `pctsdk:"authorization"`
 }
 
 type sourcePipedriveAuthConfigModel struct {
-	AuthType string `cty:"auth_type"`
-	ApiToken string `cty:"api_token"`
+	AuthType string `pctsdk:"auth_type"`
+	ApiToken string `pctsdk:"api_token"`
 }
 
 // Ensure the implementation satisfies the expected interfaces.

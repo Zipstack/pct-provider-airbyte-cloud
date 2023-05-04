@@ -16,18 +16,18 @@ type sourceFreshdeskResource struct {
 }
 
 type sourceFreshdeskResourceModel struct {
-	Name                    string                         `cty:"name"`
-	SourceId                string                         `cty:"source_id"`
-	WorkspaceId             string                         `cty:"workspace_id"`
-	ConnectionConfiguration sourceFreshdeskConnConfigModel `cty:"configuration"`
+	Name                    string                         `pctsdk:"name"`
+	SourceId                string                         `pctsdk:"source_id"`
+	WorkspaceId             string                         `pctsdk:"workspace_id"`
+	ConnectionConfiguration sourceFreshdeskConnConfigModel `pctsdk:"configuration"`
 }
 
 type sourceFreshdeskConnConfigModel struct {
-	SourceType        string `cty:"source_type"`
-	StartDate         string `cty:"start_date"`
-	Domain            string `cty:"domain"`
-	ApiKey            string `cty:"api_key"`
-	RequestsPerMinute int    `cty:"requests_per_minute"`
+	SourceType        string `pctsdk:"source_type"`
+	StartDate         string `pctsdk:"start_date"`
+	Domain            string `pctsdk:"domain"`
+	ApiKey            string `pctsdk:"api_key"`
+	RequestsPerMinute int    `pctsdk:"requests_per_minute"`
 }
 
 // Ensure the implementation satisfies the expected interfaces.
@@ -115,6 +115,7 @@ func (r *sourceFreshdeskResource) Schema() *schema.ServiceResponse {
 					"requests_per_minute": &schema.IntAttribute{
 						Description: "Requests Per Minute",
 						Optional:    true,
+						Required:    true,
 					},
 				},
 			},

@@ -16,26 +16,26 @@ type sourceFacebookMarketingResource struct {
 }
 
 type sourceFacebookMarketingResourceModel struct {
-	Name                    string                                 `cty:"name"`
-	SourceId                string                                 `cty:"source_id"`
-	WorkspaceId             string                                 `cty:"workspace_id"`
-	ConnectionConfiguration sourceFacebookMarketingConnConfigModel `cty:"configuration"`
+	Name                    string                                 `pctsdk:"name"`
+	SourceId                string                                 `pctsdk:"source_id"`
+	WorkspaceId             string                                 `pctsdk:"workspace_id"`
+	ConnectionConfiguration sourceFacebookMarketingConnConfigModel `pctsdk:"configuration"`
 }
 
 type sourceFacebookMarketingConnConfigModel struct {
-	SourceType  string `cty:"source_type"`
-	AccountId   string `cty:"account_id"`
-	StartDate   string `cty:"start_date"`
-	AccessToken string `cty:"access_token"`
+	SourceType  string `pctsdk:"source_type"`
+	AccountId   string `pctsdk:"account_id"`
+	StartDate   string `pctsdk:"start_date"`
+	AccessToken string `pctsdk:"access_token"`
 
-	EndDate              string `cty:"end_date"`
-	IncludeDeleted       bool   `cty:"include_deleted"`
-	FetchThumbnailImages bool   `cty:"fetch_thumbnail_images"`
-	//CustomInsights       any    `cty:"custom_insights"`
-	PageSize                   int  `cty:"page_size"`
-	InsightsLookbackWindow     int  `cty:"insights_lookback_window"`
-	MaxBatchSize               int  `cty:"max_batch_size"`
-	ActionBreakdownsAllowEmpty bool `cty:"action_breakdowns_allow_empty"`
+	EndDate              string `pctsdk:"end_date"`
+	IncludeDeleted       bool   `pctsdk:"include_deleted"`
+	FetchThumbnailImages bool   `pctsdk:"fetch_thumbnail_images"`
+	//CustomInsights       any    `pctsdk:"custom_insights"`
+	PageSize                   int  `pctsdk:"page_size"`
+	InsightsLookbackWindow     int  `pctsdk:"insights_lookback_window"`
+	MaxBatchSize               int  `pctsdk:"max_batch_size"`
+	ActionBreakdownsAllowEmpty bool `pctsdk:"action_breakdowns_allow_empty"`
 }
 
 // Ensure the implementation satisfies the expected interfaces.
@@ -100,7 +100,7 @@ func (r *sourceFacebookMarketingResource) Schema() *schema.ServiceResponse {
 			},
 			"configuration": &schema.MapAttribute{
 				Description: "Connection configuration",
-				// Required:    true,
+				Required:    true,
 				//Sensitive:   true,
 				Attributes: map[string]schema.Attribute{
 					"source_type": &schema.StringAttribute{
@@ -123,30 +123,37 @@ func (r *sourceFacebookMarketingResource) Schema() *schema.ServiceResponse {
 					"end_date": &schema.StringAttribute{
 						Description: "end date",
 						Optional:    true,
+						Required:    true,
 					},
 					"include_deleted": &schema.BoolAttribute{
 						Description: "Include Deleted",
 						Optional:    true,
+						Required:    true,
 					},
 					"fetch_thumbnail_images": &schema.BoolAttribute{
 						Description: "Fetch Thumbnail Image",
 						Optional:    true,
+						Required:    true,
 					},
 					"page_size": &schema.IntAttribute{
 						Description: "Page Size",
 						Optional:    true,
+						Required:    true,
 					},
 					"insights_lookback_window": &schema.IntAttribute{
 						Description: "insights_lookback_window",
 						Optional:    true,
+						Required:    true,
 					},
 					"max_batch_size": &schema.IntAttribute{
 						Description: "Max Batch Size",
 						Optional:    true,
+						Required:    true,
 					},
 					"action_breakdowns_allow_empty": &schema.BoolAttribute{
 						Description: "Action Breakdowns Allow Empty",
 						Optional:    true,
+						Required:    true,
 					},
 				},
 			},
