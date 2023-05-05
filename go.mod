@@ -2,6 +2,8 @@ module github.com/zipstack/pct-provider-airbyte-cloud
 
 go 1.19
 
+replace github.com/zclconf/go-cty v1.13.1 => github.com/zipstack/go-cty v1.13.1-pct.1
+
 require github.com/zipstack/pct-plugin-framework v1.0.0
 
 require (
