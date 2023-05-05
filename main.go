@@ -23,5 +23,7 @@ func main() {
 		plugin.NewSourceGoogleAnalyticsV4Resource,
 		plugin.NewSourceGoogleSheetsResource,
 		plugin.NewSourceFacebookMarketingResource,
+		plugin.NewDestinationMysqlResource,
+		plugin.NewConnectionResource,
 	})
 }
