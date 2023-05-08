@@ -179,13 +179,13 @@ func (r *sourceGoogleSheetsResource) Create(req *schema.ServiceRequest) *schema.
 	state.WorkspaceId = source.WorkspaceId
 
 	state.ConnectionConfiguration = sourceGoogleSheetsConnConfigModel{}
-	state.ConnectionConfiguration.SourceType = source.ConnectionConfiguration.SourceType
-	state.ConnectionConfiguration.RowBatchSize = source.ConnectionConfiguration.RowBatchSize
-	state.ConnectionConfiguration.SpreadsheetId = source.ConnectionConfiguration.SpreadsheetId
+	state.ConnectionConfiguration.SourceType = plan.ConnectionConfiguration.SourceType
+	state.ConnectionConfiguration.RowBatchSize = plan.ConnectionConfiguration.RowBatchSize
+	state.ConnectionConfiguration.SpreadsheetId = plan.ConnectionConfiguration.SpreadsheetId
 
 	state.ConnectionConfiguration.Credentials = googleSheetsCredConfigModel{}
-	state.ConnectionConfiguration.Credentials.AuthType = source.ConnectionConfiguration.Credentials.AuthType
-	state.ConnectionConfiguration.Credentials.ServiceAccountInfo = source.ConnectionConfiguration.Credentials.ServiceAccountInfo
+	state.ConnectionConfiguration.Credentials.AuthType = plan.ConnectionConfiguration.Credentials.AuthType
+	state.ConnectionConfiguration.Credentials.ServiceAccountInfo = plan.ConnectionConfiguration.Credentials.ServiceAccountInfo
 
 	// Set refreshed state
 	stateEnc, err := fwhelpers.PackModel(nil, &state)
@@ -226,16 +226,8 @@ func (r *sourceGoogleSheetsResource) Read(req *schema.ServiceRequest) *schema.Se
 		state.SourceId = source.SourceId
 		state.WorkspaceId = source.WorkspaceId
 
-		state.ConnectionConfiguration = sourceGoogleSheetsConnConfigModel{}
-		state.ConnectionConfiguration.SourceType = source.ConnectionConfiguration.SourceType
-		state.ConnectionConfiguration.RowBatchSize = source.ConnectionConfiguration.RowBatchSize
-		state.ConnectionConfiguration.SpreadsheetId = source.ConnectionConfiguration.SpreadsheetId
-
-		state.ConnectionConfiguration.Credentials = googleSheetsCredConfigModel{}
-		state.ConnectionConfiguration.Credentials.AuthType = source.ConnectionConfiguration.Credentials.AuthType
-		state.ConnectionConfiguration.Credentials.ServiceAccountInfo = source.ConnectionConfiguration.Credentials.ServiceAccountInfo
-
 		res.StateID = state.SourceId
+		// Retaining other attributes from state itself as Reading resource have only 4 attributes in response
 	} else {
 		// No previous state exists.
 		res.StateID = ""
@@ -294,13 +286,13 @@ func (r *sourceGoogleSheetsResource) Update(req *schema.ServiceRequest) *schema.
 	state.WorkspaceId = source.WorkspaceId
 
 	state.ConnectionConfiguration = sourceGoogleSheetsConnConfigModel{}
-	state.ConnectionConfiguration.SourceType = source.ConnectionConfiguration.SourceType
-	state.ConnectionConfiguration.RowBatchSize = source.ConnectionConfiguration.RowBatchSize
-	state.ConnectionConfiguration.SpreadsheetId = source.ConnectionConfiguration.SpreadsheetId
+	state.ConnectionConfiguration.SourceType = plan.ConnectionConfiguration.SourceType
+	state.ConnectionConfiguration.RowBatchSize = plan.ConnectionConfiguration.RowBatchSize
+	state.ConnectionConfiguration.SpreadsheetId = plan.ConnectionConfiguration.SpreadsheetId
 
 	state.ConnectionConfiguration.Credentials = googleSheetsCredConfigModel{}
-	state.ConnectionConfiguration.Credentials.AuthType = source.ConnectionConfiguration.Credentials.AuthType
-	state.ConnectionConfiguration.Credentials.ServiceAccountInfo = source.ConnectionConfiguration.Credentials.ServiceAccountInfo
+	state.ConnectionConfiguration.Credentials.AuthType = plan.ConnectionConfiguration.Credentials.AuthType
+	state.ConnectionConfiguration.Credentials.ServiceAccountInfo = plan.ConnectionConfiguration.Credentials.ServiceAccountInfo
 
 	// Set refreshed state
 	stateEnc, err := fwhelpers.PackModel(nil, &state)

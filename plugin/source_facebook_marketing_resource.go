@@ -199,7 +199,6 @@ func (r *sourceFacebookMarketingResource) Create(req *schema.ServiceRequest) *sc
 	body.ConnectionConfiguration.InsightsLookbackWindow = plan.ConnectionConfiguration.InsightsLookbackWindow
 	body.ConnectionConfiguration.MaxBatchSize = plan.ConnectionConfiguration.MaxBatchSize
 	body.ConnectionConfiguration.ActionBreakdownsAllowEmpty = plan.ConnectionConfiguration.ActionBreakdownsAllowEmpty
-
 	// Create new source
 	source, err := r.Client.CreateFacebookMarketingSource(body)
 
@@ -214,25 +213,24 @@ func (r *sourceFacebookMarketingResource) Create(req *schema.ServiceRequest) *sc
 	state.WorkspaceId = source.WorkspaceId
 
 	state.ConnectionConfiguration = sourceFacebookMarketingConnConfigModel{}
-	state.ConnectionConfiguration.SourceType = source.ConnectionConfiguration.SourceType
-	state.ConnectionConfiguration.AccountId = source.ConnectionConfiguration.AccountId
-	state.ConnectionConfiguration.StartDate = source.ConnectionConfiguration.StartDate
-	state.ConnectionConfiguration.AccessToken = source.ConnectionConfiguration.AccessToken
+	state.ConnectionConfiguration.SourceType = plan.ConnectionConfiguration.SourceType
+	state.ConnectionConfiguration.AccountId = plan.ConnectionConfiguration.AccountId
+	state.ConnectionConfiguration.StartDate = plan.ConnectionConfiguration.StartDate
+	state.ConnectionConfiguration.AccessToken = plan.ConnectionConfiguration.AccessToken
 
-	state.ConnectionConfiguration.EndDate = source.ConnectionConfiguration.EndDate
-	state.ConnectionConfiguration.IncludeDeleted = source.ConnectionConfiguration.IncludeDeleted
-	state.ConnectionConfiguration.FetchThumbnailImages = source.ConnectionConfiguration.FetchThumbnailImages
-	state.ConnectionConfiguration.PageSize = source.ConnectionConfiguration.PageSize
-	state.ConnectionConfiguration.InsightsLookbackWindow = source.ConnectionConfiguration.InsightsLookbackWindow
-	state.ConnectionConfiguration.MaxBatchSize = source.ConnectionConfiguration.MaxBatchSize
-	state.ConnectionConfiguration.ActionBreakdownsAllowEmpty = source.ConnectionConfiguration.ActionBreakdownsAllowEmpty
+	state.ConnectionConfiguration.EndDate = plan.ConnectionConfiguration.EndDate
+	state.ConnectionConfiguration.IncludeDeleted = plan.ConnectionConfiguration.IncludeDeleted
+	state.ConnectionConfiguration.FetchThumbnailImages = plan.ConnectionConfiguration.FetchThumbnailImages
+	state.ConnectionConfiguration.PageSize = plan.ConnectionConfiguration.PageSize
+	state.ConnectionConfiguration.InsightsLookbackWindow = plan.ConnectionConfiguration.InsightsLookbackWindow
+	state.ConnectionConfiguration.MaxBatchSize = plan.ConnectionConfiguration.MaxBatchSize
+	state.ConnectionConfiguration.ActionBreakdownsAllowEmpty = plan.ConnectionConfiguration.ActionBreakdownsAllowEmpty
 
 	// Set refreshed state
 	stateEnc, err := fwhelpers.PackModel(nil, &state)
 	if err != nil {
 		return schema.ErrorResponse(err)
 	}
-
 	return &schema.ServiceResponse{
 		StateID:          state.SourceId,
 		StateContents:    stateEnc,
@@ -266,21 +264,8 @@ func (r *sourceFacebookMarketingResource) Read(req *schema.ServiceRequest) *sche
 		state.SourceId = source.SourceId
 		state.WorkspaceId = source.WorkspaceId
 
-		state.ConnectionConfiguration = sourceFacebookMarketingConnConfigModel{}
-		state.ConnectionConfiguration.SourceType = source.ConnectionConfiguration.SourceType
-		state.ConnectionConfiguration.AccountId = source.ConnectionConfiguration.AccountId
-		state.ConnectionConfiguration.StartDate = source.ConnectionConfiguration.StartDate
-		state.ConnectionConfiguration.AccessToken = source.ConnectionConfiguration.AccessToken
-
-		state.ConnectionConfiguration.EndDate = source.ConnectionConfiguration.EndDate
-		state.ConnectionConfiguration.IncludeDeleted = source.ConnectionConfiguration.IncludeDeleted
-		state.ConnectionConfiguration.FetchThumbnailImages = source.ConnectionConfiguration.FetchThumbnailImages
-		state.ConnectionConfiguration.PageSize = source.ConnectionConfiguration.PageSize
-		state.ConnectionConfiguration.InsightsLookbackWindow = source.ConnectionConfiguration.InsightsLookbackWindow
-		state.ConnectionConfiguration.MaxBatchSize = source.ConnectionConfiguration.MaxBatchSize
-		state.ConnectionConfiguration.ActionBreakdownsAllowEmpty = source.ConnectionConfiguration.ActionBreakdownsAllowEmpty
-
 		res.StateID = state.SourceId
+		// Retaining other attributes from state itself as Reading resource have only 4 attributes in response
 	} else {
 		// No previous state exists.
 		res.StateID = ""
@@ -344,18 +329,18 @@ func (r *sourceFacebookMarketingResource) Update(req *schema.ServiceRequest) *sc
 	state.WorkspaceId = source.WorkspaceId
 
 	state.ConnectionConfiguration = sourceFacebookMarketingConnConfigModel{}
-	state.ConnectionConfiguration.SourceType = source.ConnectionConfiguration.SourceType
-	state.ConnectionConfiguration.AccountId = source.ConnectionConfiguration.AccountId
-	state.ConnectionConfiguration.StartDate = source.ConnectionConfiguration.StartDate
-	state.ConnectionConfiguration.AccessToken = source.ConnectionConfiguration.AccessToken
+	state.ConnectionConfiguration.SourceType = plan.ConnectionConfiguration.SourceType
+	state.ConnectionConfiguration.AccountId = plan.ConnectionConfiguration.AccountId
+	state.ConnectionConfiguration.StartDate = plan.ConnectionConfiguration.StartDate
+	state.ConnectionConfiguration.AccessToken = plan.ConnectionConfiguration.AccessToken
 
-	state.ConnectionConfiguration.EndDate = source.ConnectionConfiguration.EndDate
-	state.ConnectionConfiguration.IncludeDeleted = source.ConnectionConfiguration.IncludeDeleted
-	state.ConnectionConfiguration.FetchThumbnailImages = source.ConnectionConfiguration.FetchThumbnailImages
-	state.ConnectionConfiguration.PageSize = source.ConnectionConfiguration.PageSize
-	state.ConnectionConfiguration.InsightsLookbackWindow = source.ConnectionConfiguration.InsightsLookbackWindow
-	state.ConnectionConfiguration.MaxBatchSize = source.ConnectionConfiguration.MaxBatchSize
-	state.ConnectionConfiguration.ActionBreakdownsAllowEmpty = source.ConnectionConfiguration.ActionBreakdownsAllowEmpty
+	state.ConnectionConfiguration.EndDate = plan.ConnectionConfiguration.EndDate
+	state.ConnectionConfiguration.IncludeDeleted = plan.ConnectionConfiguration.IncludeDeleted
+	state.ConnectionConfiguration.FetchThumbnailImages = plan.ConnectionConfiguration.FetchThumbnailImages
+	state.ConnectionConfiguration.PageSize = plan.ConnectionConfiguration.PageSize
+	state.ConnectionConfiguration.InsightsLookbackWindow = plan.ConnectionConfiguration.InsightsLookbackWindow
+	state.ConnectionConfiguration.MaxBatchSize = plan.ConnectionConfiguration.MaxBatchSize
+	state.ConnectionConfiguration.ActionBreakdownsAllowEmpty = plan.ConnectionConfiguration.ActionBreakdownsAllowEmpty
 
 	// Set refreshed state
 	stateEnc, err := fwhelpers.PackModel(nil, &state)

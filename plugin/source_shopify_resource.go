@@ -180,12 +180,12 @@ func (r *sourceShopifyResource) Create(req *schema.ServiceRequest) *schema.Servi
 	state.WorkspaceId = source.WorkspaceId
 
 	state.ConnectionConfiguration = SourceShopifyConnConfig{}
-	state.ConnectionConfiguration.SourceType = source.ConnectionConfiguration.SourceType
-	state.ConnectionConfiguration.StartDate = source.ConnectionConfiguration.StartDate
-	state.ConnectionConfiguration.Shop = source.ConnectionConfiguration.Shop
+	state.ConnectionConfiguration.SourceType = plan.ConnectionConfiguration.SourceType
+	state.ConnectionConfiguration.StartDate = plan.ConnectionConfiguration.StartDate
+	state.ConnectionConfiguration.Shop = plan.ConnectionConfiguration.Shop
 	state.ConnectionConfiguration.Credentials = ShopifyCredConfigModel{}
-	state.ConnectionConfiguration.Credentials.ApiPassword = source.ConnectionConfiguration.Credentials.ApiPassword
-	state.ConnectionConfiguration.Credentials.AuthMethod = source.ConnectionConfiguration.Credentials.AuthMethod
+	state.ConnectionConfiguration.Credentials.ApiPassword = plan.ConnectionConfiguration.Credentials.ApiPassword
+	state.ConnectionConfiguration.Credentials.AuthMethod = plan.ConnectionConfiguration.Credentials.AuthMethod
 
 	// Set refreshed state
 	stateEnc, err := fwhelpers.PackModel(nil, &state)
@@ -226,15 +226,8 @@ func (r *sourceShopifyResource) Read(req *schema.ServiceRequest) *schema.Service
 		state.SourceId = source.SourceId
 		state.WorkspaceId = source.WorkspaceId
 
-		state.ConnectionConfiguration = SourceShopifyConnConfig{}
-		state.ConnectionConfiguration.SourceType = source.ConnectionConfiguration.SourceType
-		state.ConnectionConfiguration.StartDate = source.ConnectionConfiguration.StartDate
-		state.ConnectionConfiguration.Shop = source.ConnectionConfiguration.Shop
-		state.ConnectionConfiguration.Credentials = ShopifyCredConfigModel{}
-		state.ConnectionConfiguration.Credentials.ApiPassword = source.ConnectionConfiguration.Credentials.ApiPassword
-		state.ConnectionConfiguration.Credentials.AuthMethod = source.ConnectionConfiguration.Credentials.AuthMethod
-
 		res.StateID = state.SourceId
+		// Retaining other attributes from state itself as Reading resource have only 4 attributes in response
 	} else {
 		// No previous state exists.
 		res.StateID = ""
@@ -292,12 +285,12 @@ func (r *sourceShopifyResource) Update(req *schema.ServiceRequest) *schema.Servi
 	state.WorkspaceId = source.WorkspaceId
 
 	state.ConnectionConfiguration = SourceShopifyConnConfig{}
-	state.ConnectionConfiguration.SourceType = source.ConnectionConfiguration.SourceType
-	state.ConnectionConfiguration.StartDate = source.ConnectionConfiguration.StartDate
-	state.ConnectionConfiguration.Shop = source.ConnectionConfiguration.Shop
+	state.ConnectionConfiguration.SourceType = plan.ConnectionConfiguration.SourceType
+	state.ConnectionConfiguration.StartDate = plan.ConnectionConfiguration.StartDate
+	state.ConnectionConfiguration.Shop = plan.ConnectionConfiguration.Shop
 	state.ConnectionConfiguration.Credentials = ShopifyCredConfigModel{}
-	state.ConnectionConfiguration.Credentials.ApiPassword = source.ConnectionConfiguration.Credentials.ApiPassword
-	state.ConnectionConfiguration.Credentials.AuthMethod = source.ConnectionConfiguration.Credentials.AuthMethod
+	state.ConnectionConfiguration.Credentials.ApiPassword = plan.ConnectionConfiguration.Credentials.ApiPassword
+	state.ConnectionConfiguration.Credentials.AuthMethod = plan.ConnectionConfiguration.Credentials.AuthMethod
 
 	// Set refreshed state
 	stateEnc, err := fwhelpers.PackModel(nil, &state)

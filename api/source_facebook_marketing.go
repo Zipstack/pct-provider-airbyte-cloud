@@ -3,8 +3,6 @@ package api
 import (
 	"encoding/json"
 	"fmt"
-
-	"github.com/zipstack/pct-plugin-framework/fwhelpers"
 )
 
 type SourceFacebookMarketingID struct {
@@ -89,10 +87,9 @@ func (c *Client) ReadFacebookMarketingSource(sourceId string) (SourceFacebookMar
 }
 
 func (c *Client) UpdateFacebookMarketingSource(payload SourceFacebookMarketing) (SourceFacebookMarketing, error) {
-	logger := fwhelpers.GetLogger()
+	// logger := fwhelpers.GetLogger()
 
-	logger.Print("[yellow]Update api is not yet exposed from Airbyte-Cloud[reset]")
-	return SourceFacebookMarketing{}, nil
+	return SourceFacebookMarketing{}, fmt.Errorf("update resource is not supported")
 }
 
 func (c *Client) DeleteFacebookMarketingSource(sourceId string) error {

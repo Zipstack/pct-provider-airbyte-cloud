@@ -3,8 +3,6 @@ package api
 import (
 	"encoding/json"
 	"fmt"
-
-	"github.com/zipstack/pct-plugin-framework/fwhelpers"
 )
 
 type SourceShopifyID struct {
@@ -85,10 +83,8 @@ func (c *Client) ReadShopifySource(sourceId string) (SourceShopify, error) {
 }
 
 func (c *Client) UpdateShopifySource(payload SourceShopify) (SourceShopify, error) {
-	logger := fwhelpers.GetLogger()
-
-	logger.Print("[yellow]Update api is not yet exposed from Airbyte-Cloud[reset]")
-	return SourceShopify{}, nil
+	// logger := fwhelpers.GetLogger()
+	return SourceShopify{}, fmt.Errorf("update resource is not supported")
 }
 
 func (c *Client) DeleteShopifySource(sourceId string) error {

@@ -3,8 +3,6 @@ package api
 import (
 	"encoding/json"
 	"fmt"
-
-	"github.com/zipstack/pct-plugin-framework/fwhelpers"
 )
 
 type SourcePipedriveID struct {
@@ -83,10 +81,8 @@ func (c *Client) ReadPipedriveSource(sourceId string) (SourcePipedrive, error) {
 }
 
 func (c *Client) UpdatePipedriveSource(payload SourcePipedrive) (SourcePipedrive, error) {
-	logger := fwhelpers.GetLogger()
-
-	logger.Print("[yellow]Update api is not yet exposed from Airbyte-Cloud[reset]")
-	return SourcePipedrive{}, nil
+	// logger := fwhelpers.GetLogger()
+	return SourcePipedrive{}, fmt.Errorf("update resource is not supported")
 }
 
 func (c *Client) DeletePipedriveSource(sourceId string) error {

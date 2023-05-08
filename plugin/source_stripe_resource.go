@@ -174,12 +174,12 @@ func (r *sourceStripeResource) Create(req *schema.ServiceRequest) *schema.Servic
 	state.WorkspaceId = source.WorkspaceId
 
 	state.ConnectionConfiguration = sourceStripeConnConfigModel{}
-	state.ConnectionConfiguration.SourceType = source.ConnectionConfiguration.SourceType
-	state.ConnectionConfiguration.StartDate = source.ConnectionConfiguration.StartDate
-	state.ConnectionConfiguration.ClientSecret = source.ConnectionConfiguration.ClientSecret
-	state.ConnectionConfiguration.AccountId = source.ConnectionConfiguration.AccountId
-	state.ConnectionConfiguration.LookbackWindowDays = source.ConnectionConfiguration.LookbackWindowDays
-	state.ConnectionConfiguration.SliceRange = source.ConnectionConfiguration.SliceRange
+	state.ConnectionConfiguration.SourceType = plan.ConnectionConfiguration.SourceType
+	state.ConnectionConfiguration.StartDate = plan.ConnectionConfiguration.StartDate
+	state.ConnectionConfiguration.ClientSecret = plan.ConnectionConfiguration.ClientSecret
+	state.ConnectionConfiguration.AccountId = plan.ConnectionConfiguration.AccountId
+	state.ConnectionConfiguration.LookbackWindowDays = plan.ConnectionConfiguration.LookbackWindowDays
+	state.ConnectionConfiguration.SliceRange = plan.ConnectionConfiguration.SliceRange
 
 	// Set refreshed state
 	stateEnc, err := fwhelpers.PackModel(nil, &state)
@@ -220,13 +220,7 @@ func (r *sourceStripeResource) Read(req *schema.ServiceRequest) *schema.ServiceR
 		state.SourceId = source.SourceId
 		state.WorkspaceId = source.WorkspaceId
 
-		state.ConnectionConfiguration = sourceStripeConnConfigModel{}
-		state.ConnectionConfiguration.SourceType = source.ConnectionConfiguration.SourceType
-		state.ConnectionConfiguration.StartDate = source.ConnectionConfiguration.StartDate
-		state.ConnectionConfiguration.ClientSecret = source.ConnectionConfiguration.ClientSecret
-		state.ConnectionConfiguration.AccountId = source.ConnectionConfiguration.AccountId
-		state.ConnectionConfiguration.LookbackWindowDays = source.ConnectionConfiguration.LookbackWindowDays
-		state.ConnectionConfiguration.SliceRange = source.ConnectionConfiguration.SliceRange
+		// Retaining other attributes from state itself as Reading resource have only 4 attributes in response
 
 		res.StateID = state.SourceId
 	} else {
@@ -286,12 +280,12 @@ func (r *sourceStripeResource) Update(req *schema.ServiceRequest) *schema.Servic
 	state.WorkspaceId = source.WorkspaceId
 
 	state.ConnectionConfiguration = sourceStripeConnConfigModel{}
-	state.ConnectionConfiguration.SourceType = source.ConnectionConfiguration.SourceType
-	state.ConnectionConfiguration.StartDate = source.ConnectionConfiguration.StartDate
-	state.ConnectionConfiguration.ClientSecret = source.ConnectionConfiguration.ClientSecret
-	state.ConnectionConfiguration.AccountId = source.ConnectionConfiguration.AccountId
-	state.ConnectionConfiguration.LookbackWindowDays = source.ConnectionConfiguration.LookbackWindowDays
-	state.ConnectionConfiguration.SliceRange = source.ConnectionConfiguration.SliceRange
+	state.ConnectionConfiguration.SourceType = plan.ConnectionConfiguration.SourceType
+	state.ConnectionConfiguration.StartDate = plan.ConnectionConfiguration.StartDate
+	state.ConnectionConfiguration.ClientSecret = plan.ConnectionConfiguration.ClientSecret
+	state.ConnectionConfiguration.AccountId = plan.ConnectionConfiguration.AccountId
+	state.ConnectionConfiguration.LookbackWindowDays = plan.ConnectionConfiguration.LookbackWindowDays
+	state.ConnectionConfiguration.SliceRange = plan.ConnectionConfiguration.SliceRange
 
 	// Set refreshed state
 	stateEnc, err := fwhelpers.PackModel(nil, &state)

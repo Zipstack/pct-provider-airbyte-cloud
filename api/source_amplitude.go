@@ -3,8 +3,6 @@ package api
 import (
 	"encoding/json"
 	"fmt"
-
-	"github.com/zipstack/pct-plugin-framework/fwhelpers"
 )
 
 type SourceAmplitudeID struct {
@@ -81,10 +79,9 @@ func (c *Client) ReadAmplitudeSource(sourceId string) (SourceAmplitude, error) {
 }
 
 func (c *Client) UpdateAmplitudeSource(payload SourceAmplitude) (SourceAmplitude, error) {
-	logger := fwhelpers.GetLogger()
+	// logger := fwhelpers.GetLogger()
 
-	logger.Print("[yellow]Update api is not yet exposed from Airbyte-Cloud[reset]")
-	return SourceAmplitude{}, nil
+	return SourceAmplitude{}, fmt.Errorf("update resource is not supported")
 }
 
 func (c *Client) DeleteAmplitudeSource(sourceId string) error {

@@ -3,8 +3,6 @@ package api
 import (
 	"encoding/json"
 	"fmt"
-
-	"github.com/zipstack/pct-plugin-framework/fwhelpers"
 )
 
 type SourceFreshdeskID struct {
@@ -80,10 +78,8 @@ func (c *Client) ReadFreshdeskSource(sourceId string) (SourceFreshdesk, error) {
 }
 
 func (c *Client) UpdateFreshdeskSource(payload SourceFreshdesk) (SourceFreshdesk, error) {
-	logger := fwhelpers.GetLogger()
-
-	logger.Print("[yellow]Update api is not yet exposed from Airbyte-Cloud[reset]")
-	return SourceFreshdesk{}, nil
+	// logger := fwhelpers.GetLogger()
+	return SourceFreshdesk{}, fmt.Errorf("update resource is not supported")
 }
 
 func (c *Client) DeleteFreshdeskSource(sourceId string) error {

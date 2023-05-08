@@ -191,14 +191,14 @@ func (r *sourceZendeskSupportResource) Create(req *schema.ServiceRequest) *schem
 	state.WorkspaceId = source.WorkspaceId
 
 	state.ConnectionConfiguration = sourceZendeskSupportConnConfigModel{}
-	state.ConnectionConfiguration.SourceType = source.ConnectionConfiguration.SourceType
-	state.ConnectionConfiguration.StartDate = source.ConnectionConfiguration.StartDate
-	state.ConnectionConfiguration.IgnorPagination = source.ConnectionConfiguration.IgnorPagination
-	state.ConnectionConfiguration.Subdomain = source.ConnectionConfiguration.Subdomain
+	state.ConnectionConfiguration.SourceType = plan.ConnectionConfiguration.SourceType
+	state.ConnectionConfiguration.StartDate = plan.ConnectionConfiguration.StartDate
+	state.ConnectionConfiguration.IgnorPagination = plan.ConnectionConfiguration.IgnorPagination
+	state.ConnectionConfiguration.Subdomain = plan.ConnectionConfiguration.Subdomain
 	state.ConnectionConfiguration.Credentials = SourceZendeskSupportCredConfig{}
-	state.ConnectionConfiguration.Credentials.ApiToken = source.ConnectionConfiguration.Credentials.ApiToken
-	state.ConnectionConfiguration.Credentials.Credentials = source.ConnectionConfiguration.Credentials.Credentials
-	state.ConnectionConfiguration.Credentials.Email = source.ConnectionConfiguration.Credentials.Email
+	state.ConnectionConfiguration.Credentials.ApiToken = plan.ConnectionConfiguration.Credentials.ApiToken
+	state.ConnectionConfiguration.Credentials.Credentials = plan.ConnectionConfiguration.Credentials.Credentials
+	state.ConnectionConfiguration.Credentials.Email = plan.ConnectionConfiguration.Credentials.Email
 
 	// Set refreshed state
 	stateEnc, err := fwhelpers.PackModel(nil, &state)
@@ -239,17 +239,10 @@ func (r *sourceZendeskSupportResource) Read(req *schema.ServiceRequest) *schema.
 		state.SourceId = source.SourceId
 		state.WorkspaceId = source.WorkspaceId
 
-		state.ConnectionConfiguration = sourceZendeskSupportConnConfigModel{}
-		state.ConnectionConfiguration.SourceType = source.ConnectionConfiguration.SourceType
-		state.ConnectionConfiguration.StartDate = source.ConnectionConfiguration.StartDate
-		state.ConnectionConfiguration.IgnorPagination = source.ConnectionConfiguration.IgnorPagination
-		state.ConnectionConfiguration.Subdomain = source.ConnectionConfiguration.Subdomain
-		state.ConnectionConfiguration.Credentials = SourceZendeskSupportCredConfig{}
-		state.ConnectionConfiguration.Credentials.ApiToken = source.ConnectionConfiguration.Credentials.ApiToken
-		state.ConnectionConfiguration.Credentials.Credentials = source.ConnectionConfiguration.Credentials.Credentials
-		state.ConnectionConfiguration.Credentials.Email = source.ConnectionConfiguration.Credentials.Email
-
 		res.StateID = state.SourceId
+
+		// Retaining other attributes from state itself as Reading resource have only 4 attributes in response
+
 	} else {
 		// No previous state exists.
 		res.StateID = ""
@@ -308,14 +301,14 @@ func (r *sourceZendeskSupportResource) Update(req *schema.ServiceRequest) *schem
 	state.WorkspaceId = source.WorkspaceId
 
 	state.ConnectionConfiguration = sourceZendeskSupportConnConfigModel{}
-	state.ConnectionConfiguration.SourceType = source.ConnectionConfiguration.SourceType
-	state.ConnectionConfiguration.StartDate = source.ConnectionConfiguration.StartDate
-	state.ConnectionConfiguration.IgnorPagination = source.ConnectionConfiguration.IgnorPagination
-	state.ConnectionConfiguration.Subdomain = source.ConnectionConfiguration.Subdomain
+	state.ConnectionConfiguration.SourceType = plan.ConnectionConfiguration.SourceType
+	state.ConnectionConfiguration.StartDate = plan.ConnectionConfiguration.StartDate
+	state.ConnectionConfiguration.IgnorPagination = plan.ConnectionConfiguration.IgnorPagination
+	state.ConnectionConfiguration.Subdomain = plan.ConnectionConfiguration.Subdomain
 	state.ConnectionConfiguration.Credentials = SourceZendeskSupportCredConfig{}
-	state.ConnectionConfiguration.Credentials.ApiToken = source.ConnectionConfiguration.Credentials.ApiToken
-	state.ConnectionConfiguration.Credentials.Credentials = source.ConnectionConfiguration.Credentials.Credentials
-	state.ConnectionConfiguration.Credentials.Email = source.ConnectionConfiguration.Credentials.Email
+	state.ConnectionConfiguration.Credentials.ApiToken = plan.ConnectionConfiguration.Credentials.ApiToken
+	state.ConnectionConfiguration.Credentials.Credentials = plan.ConnectionConfiguration.Credentials.Credentials
+	state.ConnectionConfiguration.Credentials.Email = plan.ConnectionConfiguration.Credentials.Email
 
 	// Set refreshed state
 	stateEnc, err := fwhelpers.PackModel(nil, &state)

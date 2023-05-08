@@ -191,14 +191,14 @@ func (r *sourceGoogleAnalyticsV4Resource) Create(req *schema.ServiceRequest) *sc
 	state.WorkspaceId = source.WorkspaceId
 
 	state.ConnectionConfiguration = sourceGoogleAnalyticsV4ConnConfigModel{}
-	state.ConnectionConfiguration.SourceType = source.ConnectionConfiguration.SourceType
-	state.ConnectionConfiguration.StartDate = source.ConnectionConfiguration.StartDate
-	state.ConnectionConfiguration.CustomReports = source.ConnectionConfiguration.CustomReports
-	state.ConnectionConfiguration.ViewId = source.ConnectionConfiguration.ViewId
-	state.ConnectionConfiguration.WindowInDays = source.ConnectionConfiguration.WindowInDays
+	state.ConnectionConfiguration.SourceType = plan.ConnectionConfiguration.SourceType
+	state.ConnectionConfiguration.StartDate = plan.ConnectionConfiguration.StartDate
+	state.ConnectionConfiguration.CustomReports = plan.ConnectionConfiguration.CustomReports
+	state.ConnectionConfiguration.ViewId = plan.ConnectionConfiguration.ViewId
+	state.ConnectionConfiguration.WindowInDays = plan.ConnectionConfiguration.WindowInDays
 	state.ConnectionConfiguration.Credentials = googleAnalyticsV4CredConfigModel{}
-	state.ConnectionConfiguration.Credentials.AuthType = source.ConnectionConfiguration.Credentials.AuthType
-	state.ConnectionConfiguration.Credentials.CredentialsJson = source.ConnectionConfiguration.Credentials.CredentialsJson
+	state.ConnectionConfiguration.Credentials.AuthType = plan.ConnectionConfiguration.Credentials.AuthType
+	state.ConnectionConfiguration.Credentials.CredentialsJson = plan.ConnectionConfiguration.Credentials.CredentialsJson
 
 	// Set refreshed state
 	stateEnc, err := fwhelpers.PackModel(nil, &state)
@@ -239,17 +239,8 @@ func (r *sourceGoogleAnalyticsV4Resource) Read(req *schema.ServiceRequest) *sche
 		state.SourceId = source.SourceId
 		state.WorkspaceId = source.WorkspaceId
 
-		state.ConnectionConfiguration = sourceGoogleAnalyticsV4ConnConfigModel{}
-		state.ConnectionConfiguration.SourceType = source.ConnectionConfiguration.SourceType
-		state.ConnectionConfiguration.StartDate = source.ConnectionConfiguration.StartDate
-		state.ConnectionConfiguration.CustomReports = source.ConnectionConfiguration.CustomReports
-		state.ConnectionConfiguration.ViewId = source.ConnectionConfiguration.ViewId
-		state.ConnectionConfiguration.WindowInDays = source.ConnectionConfiguration.WindowInDays
-		state.ConnectionConfiguration.Credentials = googleAnalyticsV4CredConfigModel{}
-		state.ConnectionConfiguration.Credentials.AuthType = source.ConnectionConfiguration.Credentials.AuthType
-		state.ConnectionConfiguration.Credentials.CredentialsJson = source.ConnectionConfiguration.Credentials.CredentialsJson
-
 		res.StateID = state.SourceId
+		// Retaining other attributes from state itself as Reading resource have only 4 attributes in response
 	} else {
 		// No previous state exists.
 		res.StateID = ""
@@ -309,14 +300,14 @@ func (r *sourceGoogleAnalyticsV4Resource) Update(req *schema.ServiceRequest) *sc
 	state.WorkspaceId = source.WorkspaceId
 
 	state.ConnectionConfiguration = sourceGoogleAnalyticsV4ConnConfigModel{}
-	state.ConnectionConfiguration.SourceType = source.ConnectionConfiguration.SourceType
-	state.ConnectionConfiguration.StartDate = source.ConnectionConfiguration.StartDate
-	state.ConnectionConfiguration.CustomReports = source.ConnectionConfiguration.CustomReports
-	state.ConnectionConfiguration.ViewId = source.ConnectionConfiguration.ViewId
-	state.ConnectionConfiguration.WindowInDays = source.ConnectionConfiguration.WindowInDays
+	state.ConnectionConfiguration.SourceType = plan.ConnectionConfiguration.SourceType
+	state.ConnectionConfiguration.StartDate = plan.ConnectionConfiguration.StartDate
+	state.ConnectionConfiguration.CustomReports = plan.ConnectionConfiguration.CustomReports
+	state.ConnectionConfiguration.ViewId = plan.ConnectionConfiguration.ViewId
+	state.ConnectionConfiguration.WindowInDays = plan.ConnectionConfiguration.WindowInDays
 	state.ConnectionConfiguration.Credentials = googleAnalyticsV4CredConfigModel{}
-	state.ConnectionConfiguration.Credentials.AuthType = source.ConnectionConfiguration.Credentials.AuthType
-	state.ConnectionConfiguration.Credentials.CredentialsJson = source.ConnectionConfiguration.Credentials.CredentialsJson
+	state.ConnectionConfiguration.Credentials.AuthType = plan.ConnectionConfiguration.Credentials.AuthType
+	state.ConnectionConfiguration.Credentials.CredentialsJson = plan.ConnectionConfiguration.Credentials.CredentialsJson
 
 	// Set refreshed state
 	stateEnc, err := fwhelpers.PackModel(nil, &state)
