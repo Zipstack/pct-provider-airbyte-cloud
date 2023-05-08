@@ -3,8 +3,6 @@ package api
 import (
 	"encoding/json"
 	"fmt"
-
-	"github.com/zipstack/pct-plugin-framework/fwhelpers"
 )
 
 type DestinationMysqlID struct {
@@ -81,10 +79,9 @@ func (c *Client) ReadMysqlDestination(destinationId string) (DestinationMysql, e
 }
 
 func (c *Client) UpdateMysqlDestination(payload DestinationMysql) (DestinationMysql, error) {
-	logger := fwhelpers.GetLogger()
+	// logger := fwhelpers.GetLogger()
 
-	logger.Print("[yellow]Update api is not yet exposed from Airbyte-Cloud[reset]")
-	return DestinationMysql{}, nil
+	return DestinationMysql{}, fmt.Errorf("update resource is not supported")
 }
 
 func (c *Client) DeleteMysqlDestination(destinationId string) error {

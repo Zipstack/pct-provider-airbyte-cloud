@@ -3,8 +3,6 @@ package api
 import (
 	"encoding/json"
 	"fmt"
-
-	"github.com/zipstack/pct-plugin-framework/fwhelpers"
 )
 
 type SourceHubspotID struct {
@@ -82,10 +80,8 @@ func (c *Client) ReadHubspotSource(sourceId string) (SourceHubspot, error) {
 }
 
 func (c *Client) UpdateHubspotSource(payload SourceHubspot) (SourceHubspot, error) {
-	logger := fwhelpers.GetLogger()
-
-	logger.Print("[yellow]Update api is not yet exposed from Airbyte-Cloud[reset]")
-	return SourceHubspot{}, nil
+	// logger := fwhelpers.GetLogger()
+	return SourceHubspot{}, fmt.Errorf("update resource is not supported")
 }
 
 func (c *Client) DeleteHubspotSource(sourceId string) error {

@@ -3,8 +3,6 @@ package api
 import (
 	"encoding/json"
 	"fmt"
-
-	"github.com/zipstack/pct-plugin-framework/fwhelpers"
 )
 
 type SourceGoogleAnalyticsV4ID struct {
@@ -85,10 +83,8 @@ func (c *Client) ReadGoogleAnalyticsV4Source(sourceId string) (SourceGoogleAnaly
 }
 
 func (c *Client) UpdateGoogleAnalyticsV4Source(payload SourceGoogleAnalyticsV4) (SourceGoogleAnalyticsV4, error) {
-	logger := fwhelpers.GetLogger()
-
-	logger.Print("[yellow]Update api is not yet exposed from Airbyte-Cloud[reset]")
-	return SourceGoogleAnalyticsV4{}, nil
+	// logger := fwhelpers.GetLogger()
+	return SourceGoogleAnalyticsV4{}, fmt.Errorf("update resource is not supported")
 }
 
 func (c *Client) DeleteGoogleAnalyticsV4Source(sourceId string) error {

@@ -3,8 +3,6 @@ package api
 import (
 	"encoding/json"
 	"fmt"
-
-	"github.com/zipstack/pct-plugin-framework/fwhelpers"
 )
 
 type SourceZendeskSupportID struct {
@@ -86,10 +84,8 @@ func (c *Client) ReadZendeskSupportSource(sourceId string) (SourceZendeskSupport
 }
 
 func (c *Client) UpdateZendeskSupportSource(payload SourceZendeskSupport) (SourceZendeskSupport, error) {
-	logger := fwhelpers.GetLogger()
-
-	logger.Print("[yellow]Update api is not yet exposed from Airbyte-Cloud[reset]")
-	return SourceZendeskSupport{}, nil
+	// logger := fwhelpers.GetLogger()
+	return SourceZendeskSupport{}, fmt.Errorf("update resource is not supported")
 }
 
 func (c *Client) DeleteZendeskSupportSource(sourceId string) error {

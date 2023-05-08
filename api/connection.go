@@ -3,8 +3,6 @@ package api
 import (
 	"encoding/json"
 	"fmt"
-
-	"github.com/zipstack/pct-plugin-framework/fwhelpers"
 )
 
 type ConnectionResourceID struct {
@@ -90,17 +88,16 @@ func (c *Client) ReadConnectionResource(connectionId string) (ConnectionResource
 }
 
 func (c *Client) UpdateConnectionResource(payload ConnectionResource) (ConnectionResource, error) {
-	logger := fwhelpers.GetLogger()
+	// logger := fwhelpers.GetLogger()
 
-	logger.Print("[yellow]Update api is not yet exposed from Airbyte-Cloud[reset]")
-	return ConnectionResource{}, nil
+	return ConnectionResource{}, fmt.Errorf("update resource is not supported")
 }
 
 func (c *Client) DeleteConnectionResource(connectionId string) error {
 	// logger := fwhelpers.GetLogger()
 
 	method := "DELETE"
-	url := c.Host + "/v1/connections"
+	url := c.Host + "/v1/connections/" + connectionId
 
 	b, statusCode, _, _, err := c.doRequest(method, url, []byte{}, nil)
 	if err != nil {
