@@ -173,12 +173,12 @@ func (r *destinationMysqlResource) Create(req *schema.ServiceRequest) *schema.Se
 	state.WorkspaceId = destination.WorkspaceId
 
 	state.ConnectionConfiguration = destinationMysqlConnConfigModel{}
-	state.ConnectionConfiguration.Host = destination.ConnectionConfiguration.Host
-	state.ConnectionConfiguration.Port = destination.ConnectionConfiguration.Port
-	state.ConnectionConfiguration.Username = destination.ConnectionConfiguration.Username
-	state.ConnectionConfiguration.Password = destination.ConnectionConfiguration.Password
-	state.ConnectionConfiguration.DestinationType = destination.ConnectionConfiguration.DestinationType
-	state.ConnectionConfiguration.Database = destination.ConnectionConfiguration.Database
+	state.ConnectionConfiguration.Host = plan.ConnectionConfiguration.Host
+	state.ConnectionConfiguration.Port = plan.ConnectionConfiguration.Port
+	state.ConnectionConfiguration.Username = plan.ConnectionConfiguration.Username
+	state.ConnectionConfiguration.Password = plan.ConnectionConfiguration.Password
+	state.ConnectionConfiguration.DestinationType = plan.ConnectionConfiguration.DestinationType
+	state.ConnectionConfiguration.Database = plan.ConnectionConfiguration.Database
 
 	// Set refreshed state
 	stateEnc, err := fwhelpers.PackModel(nil, &state)
@@ -219,15 +219,8 @@ func (r *destinationMysqlResource) Read(req *schema.ServiceRequest) *schema.Serv
 		state.DestinationId = destination.DestinationId
 		state.WorkspaceId = destination.WorkspaceId
 
-		state.ConnectionConfiguration = destinationMysqlConnConfigModel{}
-		state.ConnectionConfiguration.DestinationType = destination.ConnectionConfiguration.DestinationType
-		state.ConnectionConfiguration.Port = destination.ConnectionConfiguration.Port
-		state.ConnectionConfiguration.Host = destination.ConnectionConfiguration.Host
-		state.ConnectionConfiguration.Username = destination.ConnectionConfiguration.Username
-		state.ConnectionConfiguration.Password = destination.ConnectionConfiguration.Password
-		state.ConnectionConfiguration.Database = destination.ConnectionConfiguration.Database
-
 		res.StateID = state.DestinationId
+		// Retaining other attributes from state itself as Reading resource have only 4 attributes in response
 	} else {
 		// No previous state exists.
 		res.StateID = ""
@@ -285,12 +278,12 @@ func (r *destinationMysqlResource) Update(req *schema.ServiceRequest) *schema.Se
 	state.WorkspaceId = destination.WorkspaceId
 
 	state.ConnectionConfiguration = destinationMysqlConnConfigModel{}
-	state.ConnectionConfiguration.DestinationType = destination.ConnectionConfiguration.DestinationType
-	state.ConnectionConfiguration.Port = destination.ConnectionConfiguration.Port
-	state.ConnectionConfiguration.Host = destination.ConnectionConfiguration.Host
-	state.ConnectionConfiguration.Username = destination.ConnectionConfiguration.Username
-	state.ConnectionConfiguration.Password = destination.ConnectionConfiguration.Password
-	state.ConnectionConfiguration.Database = destination.ConnectionConfiguration.Database
+	state.ConnectionConfiguration.DestinationType = plan.ConnectionConfiguration.DestinationType
+	state.ConnectionConfiguration.Port = plan.ConnectionConfiguration.Port
+	state.ConnectionConfiguration.Host = plan.ConnectionConfiguration.Host
+	state.ConnectionConfiguration.Username = plan.ConnectionConfiguration.Username
+	state.ConnectionConfiguration.Password = plan.ConnectionConfiguration.Password
+	state.ConnectionConfiguration.Database = plan.ConnectionConfiguration.Database
 
 	// Set refreshed state
 	stateEnc, err := fwhelpers.PackModel(nil, &state)

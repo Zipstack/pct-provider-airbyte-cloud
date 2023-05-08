@@ -168,11 +168,11 @@ func (r *sourceFreshdeskResource) Create(req *schema.ServiceRequest) *schema.Ser
 	state.WorkspaceId = source.WorkspaceId
 
 	state.ConnectionConfiguration = sourceFreshdeskConnConfigModel{}
-	state.ConnectionConfiguration.SourceType = source.ConnectionConfiguration.SourceType
-	state.ConnectionConfiguration.StartDate = source.ConnectionConfiguration.StartDate
-	state.ConnectionConfiguration.ApiKey = source.ConnectionConfiguration.ApiKey
-	state.ConnectionConfiguration.Domain = source.ConnectionConfiguration.Domain
-	state.ConnectionConfiguration.RequestsPerMinute = source.ConnectionConfiguration.RequestsPerMinute
+	state.ConnectionConfiguration.SourceType = plan.ConnectionConfiguration.SourceType
+	state.ConnectionConfiguration.StartDate = plan.ConnectionConfiguration.StartDate
+	state.ConnectionConfiguration.ApiKey = plan.ConnectionConfiguration.ApiKey
+	state.ConnectionConfiguration.Domain = plan.ConnectionConfiguration.Domain
+	state.ConnectionConfiguration.RequestsPerMinute = plan.ConnectionConfiguration.RequestsPerMinute
 
 	// Set refreshed state
 	stateEnc, err := fwhelpers.PackModel(nil, &state)
@@ -213,14 +213,8 @@ func (r *sourceFreshdeskResource) Read(req *schema.ServiceRequest) *schema.Servi
 		state.SourceId = source.SourceId
 		state.WorkspaceId = source.WorkspaceId
 
-		state.ConnectionConfiguration = sourceFreshdeskConnConfigModel{}
-		state.ConnectionConfiguration.SourceType = source.ConnectionConfiguration.SourceType
-		state.ConnectionConfiguration.StartDate = source.ConnectionConfiguration.StartDate
-		state.ConnectionConfiguration.ApiKey = source.ConnectionConfiguration.ApiKey
-		state.ConnectionConfiguration.Domain = source.ConnectionConfiguration.Domain
-		state.ConnectionConfiguration.RequestsPerMinute = source.ConnectionConfiguration.RequestsPerMinute
-
 		res.StateID = state.SourceId
+		// Retaining other attributes from state itself as Reading resource have only 4 attributes in response
 	} else {
 		// No previous state exists.
 		res.StateID = ""
@@ -276,11 +270,11 @@ func (r *sourceFreshdeskResource) Update(req *schema.ServiceRequest) *schema.Ser
 	state.WorkspaceId = source.WorkspaceId
 
 	state.ConnectionConfiguration = sourceFreshdeskConnConfigModel{}
-	state.ConnectionConfiguration.SourceType = source.ConnectionConfiguration.SourceType
-	state.ConnectionConfiguration.StartDate = source.ConnectionConfiguration.StartDate
-	state.ConnectionConfiguration.ApiKey = source.ConnectionConfiguration.ApiKey
-	state.ConnectionConfiguration.Domain = source.ConnectionConfiguration.Domain
-	state.ConnectionConfiguration.RequestsPerMinute = source.ConnectionConfiguration.RequestsPerMinute
+	state.ConnectionConfiguration.SourceType = plan.ConnectionConfiguration.SourceType
+	state.ConnectionConfiguration.StartDate = plan.ConnectionConfiguration.StartDate
+	state.ConnectionConfiguration.ApiKey = plan.ConnectionConfiguration.ApiKey
+	state.ConnectionConfiguration.Domain = plan.ConnectionConfiguration.Domain
+	state.ConnectionConfiguration.RequestsPerMinute = plan.ConnectionConfiguration.RequestsPerMinute
 
 	// Set refreshed state
 	stateEnc, err := fwhelpers.PackModel(nil, &state)

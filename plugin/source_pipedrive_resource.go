@@ -168,16 +168,15 @@ func (r *sourcePipedriveResource) Create(req *schema.ServiceRequest) *schema.Ser
 	// Update resource state with response body
 	state := sourcePipedriveResourceModel{}
 	state.Name = source.Name
-
 	state.SourceId = source.SourceId
 	state.WorkspaceId = source.WorkspaceId
 
 	state.Configuration = sourcePipedriveConnConfigModel{}
-	state.Configuration.SourceType = source.Configuration.SourceType
-	state.Configuration.ReplicationStartDate = source.Configuration.ReplicationStartDate
+	state.Configuration.SourceType = plan.Configuration.SourceType
+	state.Configuration.ReplicationStartDate = plan.Configuration.ReplicationStartDate
 	state.Configuration.Authorization = sourcePipedriveAuthConfigModel{}
-	state.Configuration.Authorization.AuthType = source.Configuration.Authorization.AuthType
-	state.Configuration.Authorization.ApiToken = source.Configuration.Authorization.ApiToken
+	state.Configuration.Authorization.AuthType = plan.Configuration.Authorization.AuthType
+	state.Configuration.Authorization.ApiToken = plan.Configuration.Authorization.ApiToken
 
 	// Set refreshed state
 	stateEnc, err := fwhelpers.PackModel(nil, &state)
@@ -217,14 +216,8 @@ func (r *sourcePipedriveResource) Read(req *schema.ServiceRequest) *schema.Servi
 		state.SourceId = source.SourceId
 		state.WorkspaceId = source.WorkspaceId
 
-		state.Configuration = sourcePipedriveConnConfigModel{}
-		state.Configuration.SourceType = source.Configuration.SourceType
-		state.Configuration.ReplicationStartDate = source.Configuration.ReplicationStartDate
-		state.Configuration.Authorization = sourcePipedriveAuthConfigModel{}
-		state.Configuration.Authorization.AuthType = source.Configuration.Authorization.AuthType
-		state.Configuration.Authorization.ApiToken = source.Configuration.Authorization.ApiToken
-
 		res.StateID = state.SourceId
+		// Retaining other attributes from state itself as Reading resource have only 4 attributes in response
 	} else {
 		// No previous state exists.
 		res.StateID = ""
@@ -281,11 +274,11 @@ func (r *sourcePipedriveResource) Update(req *schema.ServiceRequest) *schema.Ser
 	state.WorkspaceId = source.WorkspaceId
 
 	state.Configuration = sourcePipedriveConnConfigModel{}
-	state.Configuration.SourceType = source.Configuration.SourceType
-	state.Configuration.ReplicationStartDate = source.Configuration.ReplicationStartDate
+	state.Configuration.SourceType = plan.Configuration.SourceType
+	state.Configuration.ReplicationStartDate = plan.Configuration.ReplicationStartDate
 	state.Configuration.Authorization = sourcePipedriveAuthConfigModel{}
-	state.Configuration.Authorization.AuthType = source.Configuration.Authorization.AuthType
-	state.Configuration.Authorization.ApiToken = source.Configuration.Authorization.ApiToken
+	state.Configuration.Authorization.AuthType = plan.Configuration.Authorization.AuthType
+	state.Configuration.Authorization.ApiToken = plan.Configuration.Authorization.ApiToken
 
 	// Set refreshed state
 	stateEnc, err := fwhelpers.PackModel(nil, &state)

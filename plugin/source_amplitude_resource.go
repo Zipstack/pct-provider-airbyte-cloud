@@ -176,12 +176,12 @@ func (r *sourceAmplitudeResource) Create(req *schema.ServiceRequest) *schema.Ser
 	state.WorkspaceId = source.WorkspaceId
 
 	state.ConnectionConfiguration = sourceAmplitudeConnConfigModel{}
-	state.ConnectionConfiguration.SourceType = source.ConnectionConfiguration.SourceType
-	state.ConnectionConfiguration.StartDate = source.ConnectionConfiguration.StartDate
-	state.ConnectionConfiguration.ApiKey = source.ConnectionConfiguration.ApiKey
-	state.ConnectionConfiguration.SecretKey = source.ConnectionConfiguration.SecretKey
-	state.ConnectionConfiguration.DataRegion = source.ConnectionConfiguration.DataRegion
-	state.ConnectionConfiguration.RequestTimeRange = source.ConnectionConfiguration.RequestTimeRange
+	state.ConnectionConfiguration.SourceType = plan.ConnectionConfiguration.SourceType
+	state.ConnectionConfiguration.StartDate = plan.ConnectionConfiguration.StartDate
+	state.ConnectionConfiguration.ApiKey = plan.ConnectionConfiguration.ApiKey
+	state.ConnectionConfiguration.SecretKey = plan.ConnectionConfiguration.SecretKey
+	state.ConnectionConfiguration.DataRegion = plan.ConnectionConfiguration.DataRegion
+	state.ConnectionConfiguration.RequestTimeRange = plan.ConnectionConfiguration.RequestTimeRange
 
 	// Set refreshed state
 	stateEnc, err := fwhelpers.PackModel(nil, &state)
@@ -222,15 +222,8 @@ func (r *sourceAmplitudeResource) Read(req *schema.ServiceRequest) *schema.Servi
 		state.SourceId = source.SourceId
 		state.WorkspaceId = source.WorkspaceId
 
-		state.ConnectionConfiguration = sourceAmplitudeConnConfigModel{}
-		state.ConnectionConfiguration.SourceType = source.ConnectionConfiguration.SourceType
-		state.ConnectionConfiguration.StartDate = source.ConnectionConfiguration.StartDate
-		state.ConnectionConfiguration.ApiKey = source.ConnectionConfiguration.ApiKey
-		state.ConnectionConfiguration.SecretKey = source.ConnectionConfiguration.SecretKey
-		state.ConnectionConfiguration.RequestTimeRange = source.ConnectionConfiguration.RequestTimeRange
-		state.ConnectionConfiguration.DataRegion = source.ConnectionConfiguration.DataRegion
-
 		res.StateID = state.SourceId
+		// Retaining other attributes from state itself as Reading resource have only 4 attributes in response
 	} else {
 		// No previous state exists.
 		res.StateID = ""
@@ -288,12 +281,12 @@ func (r *sourceAmplitudeResource) Update(req *schema.ServiceRequest) *schema.Ser
 	state.WorkspaceId = source.WorkspaceId
 
 	state.ConnectionConfiguration = sourceAmplitudeConnConfigModel{}
-	state.ConnectionConfiguration.SourceType = source.ConnectionConfiguration.SourceType
-	state.ConnectionConfiguration.StartDate = source.ConnectionConfiguration.StartDate
-	state.ConnectionConfiguration.ApiKey = source.ConnectionConfiguration.ApiKey
-	state.ConnectionConfiguration.SecretKey = source.ConnectionConfiguration.SecretKey
-	state.ConnectionConfiguration.DataRegion = source.ConnectionConfiguration.DataRegion
-	state.ConnectionConfiguration.RequestTimeRange = source.ConnectionConfiguration.RequestTimeRange
+	state.ConnectionConfiguration.SourceType = plan.ConnectionConfiguration.SourceType
+	state.ConnectionConfiguration.StartDate = plan.ConnectionConfiguration.StartDate
+	state.ConnectionConfiguration.ApiKey = plan.ConnectionConfiguration.ApiKey
+	state.ConnectionConfiguration.SecretKey = plan.ConnectionConfiguration.SecretKey
+	state.ConnectionConfiguration.DataRegion = plan.ConnectionConfiguration.DataRegion
+	state.ConnectionConfiguration.RequestTimeRange = plan.ConnectionConfiguration.RequestTimeRange
 
 	// Set refreshed state
 	stateEnc, err := fwhelpers.PackModel(nil, &state)

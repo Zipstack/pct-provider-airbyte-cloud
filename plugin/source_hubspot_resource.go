@@ -172,11 +172,11 @@ func (r *sourceHubspotResource) Create(req *schema.ServiceRequest) *schema.Servi
 	state.WorkspaceId = source.WorkspaceId
 
 	state.ConnectionConfiguration = sourceHubspotConnConfigModel{}
-	state.ConnectionConfiguration.SourceType = source.ConnectionConfiguration.SourceType
-	state.ConnectionConfiguration.StartDate = source.ConnectionConfiguration.StartDate
+	state.ConnectionConfiguration.SourceType = plan.ConnectionConfiguration.SourceType
+	state.ConnectionConfiguration.StartDate = plan.ConnectionConfiguration.StartDate
 	state.ConnectionConfiguration.Credentials = hubspotCredConfigModel{}
-	state.ConnectionConfiguration.Credentials.CredentialsTitle = source.ConnectionConfiguration.Credentials.CredentialsTitle
-	state.ConnectionConfiguration.Credentials.AccessToken = source.ConnectionConfiguration.Credentials.AccessToken
+	state.ConnectionConfiguration.Credentials.CredentialsTitle = plan.ConnectionConfiguration.Credentials.CredentialsTitle
+	state.ConnectionConfiguration.Credentials.AccessToken = plan.ConnectionConfiguration.Credentials.AccessToken
 
 	// Set refreshed state
 	stateEnc, err := fwhelpers.PackModel(nil, &state)
@@ -217,14 +217,9 @@ func (r *sourceHubspotResource) Read(req *schema.ServiceRequest) *schema.Service
 		state.SourceId = source.SourceId
 		state.WorkspaceId = source.WorkspaceId
 
-		state.ConnectionConfiguration = sourceHubspotConnConfigModel{}
-		state.ConnectionConfiguration.SourceType = source.ConnectionConfiguration.SourceType
-		state.ConnectionConfiguration.StartDate = source.ConnectionConfiguration.StartDate
-		state.ConnectionConfiguration.Credentials = hubspotCredConfigModel{}
-		state.ConnectionConfiguration.Credentials.CredentialsTitle = source.ConnectionConfiguration.Credentials.CredentialsTitle
-		state.ConnectionConfiguration.Credentials.AccessToken = source.ConnectionConfiguration.Credentials.AccessToken
-
 		res.StateID = state.SourceId
+
+		// Retaining other attributes from state itself as Reading resource have only 4 attributes in response
 	} else {
 		// No previous state exists.
 		res.StateID = ""
@@ -281,11 +276,11 @@ func (r *sourceHubspotResource) Update(req *schema.ServiceRequest) *schema.Servi
 	state.WorkspaceId = source.WorkspaceId
 
 	state.ConnectionConfiguration = sourceHubspotConnConfigModel{}
-	state.ConnectionConfiguration.SourceType = source.ConnectionConfiguration.SourceType
-	state.ConnectionConfiguration.StartDate = source.ConnectionConfiguration.StartDate
+	state.ConnectionConfiguration.SourceType = plan.ConnectionConfiguration.SourceType
+	state.ConnectionConfiguration.StartDate = plan.ConnectionConfiguration.StartDate
 	state.ConnectionConfiguration.Credentials = hubspotCredConfigModel{}
-	state.ConnectionConfiguration.Credentials.CredentialsTitle = source.ConnectionConfiguration.Credentials.CredentialsTitle
-	state.ConnectionConfiguration.Credentials.AccessToken = source.ConnectionConfiguration.Credentials.AccessToken
+	state.ConnectionConfiguration.Credentials.CredentialsTitle = plan.ConnectionConfiguration.Credentials.CredentialsTitle
+	state.ConnectionConfiguration.Credentials.AccessToken = plan.ConnectionConfiguration.Credentials.AccessToken
 
 	// Set refreshed state
 	stateEnc, err := fwhelpers.PackModel(nil, &state)
