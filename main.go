@@ -12,7 +12,7 @@ var version string
 
 func main() {
 	server.Serve(version, plugin.NewProvider, []func() schema.ResourceService{
-
+		//Source connectors
 		plugin.NewSourcePipedriveResource,
 		plugin.NewSourceStripeResource,
 		plugin.NewSourceAmplitudeResource,
@@ -23,8 +23,12 @@ func main() {
 		plugin.NewSourceGoogleAnalyticsV4Resource,
 		plugin.NewSourceGoogleSheetsResource,
 		plugin.NewSourceFacebookMarketingResource,
+
+		//Destination Connectors
 		plugin.NewDestinationMysqlResource,
-		plugin.NewConnectionResource,
 		plugin.NewDestinationPostgresResource,
+
+		//Connections
+		plugin.NewConnectionResource,
 	})
 }
