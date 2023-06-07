@@ -25,5 +25,6 @@ func main() {
 		plugin.NewSourceFacebookMarketingResource,
 		plugin.NewDestinationMysqlResource,
 		plugin.NewConnectionResource,
+		plugin.NewDestinationPostgresResource,
 	})
 }
