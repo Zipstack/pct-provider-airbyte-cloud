@@ -82,7 +82,30 @@ func (c *Client) ReadPipedriveSource(sourceId string) (SourcePipedrive, error) {
 
 func (c *Client) UpdatePipedriveSource(payload SourcePipedrive) (SourcePipedrive, error) {
 	// logger := fwhelpers.GetLogger()
-	return SourcePipedrive{}, fmt.Errorf("update resource is not supported")
+	method := "PUT"
+	url := c.Host + "/v1/sources/" + payload.SourceId
+	body, err := json.Marshal(payload)
+	if err != nil {
+		return SourcePipedrive{}, err
+	}
+
+	b, statusCode, _, _, err := c.doRequest(method, url, body, nil)
+	if err != nil {
+		return SourcePipedrive{}, err
+	}
+
+	source := SourcePipedrive{}
+	if statusCode >= 200 && statusCode <= 299 {
+		err = json.Unmarshal(b, &source)
+		return source, err
+	} else {
+		msg, err := c.getAPIError(b)
+		if err != nil {
+			return source, err
+		} else {
+			return source, fmt.Errorf(msg)
+		}
+	}
 }
 
 func (c *Client) DeletePipedriveSource(sourceId string) error {

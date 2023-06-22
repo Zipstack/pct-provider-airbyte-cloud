@@ -79,7 +79,30 @@ func (c *Client) ReadFreshdeskSource(sourceId string) (SourceFreshdesk, error) {
 
 func (c *Client) UpdateFreshdeskSource(payload SourceFreshdesk) (SourceFreshdesk, error) {
 	// logger := fwhelpers.GetLogger()
-	return SourceFreshdesk{}, fmt.Errorf("update resource is not supported")
+	method := "PUT"
+	url := c.Host + "/v1/sources/" + payload.SourceId
+	body, err := json.Marshal(payload)
+	if err != nil {
+		return SourceFreshdesk{}, err
+	}
+
+	b, statusCode, _, _, err := c.doRequest(method, url, body, nil)
+	if err != nil {
+		return SourceFreshdesk{}, err
+	}
+
+	source := SourceFreshdesk{}
+	if statusCode >= 200 && statusCode <= 299 {
+		err = json.Unmarshal(b, &source)
+		return source, err
+	} else {
+		msg, err := c.getAPIError(b)
+		if err != nil {
+			return source, err
+		} else {
+			return source, fmt.Errorf(msg)
+		}
+	}
 }
 
 func (c *Client) DeleteFreshdeskSource(sourceId string) error {
