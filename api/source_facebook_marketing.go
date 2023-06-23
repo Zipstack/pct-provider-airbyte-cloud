@@ -89,7 +89,30 @@ func (c *Client) ReadFacebookMarketingSource(sourceId string) (SourceFacebookMar
 func (c *Client) UpdateFacebookMarketingSource(payload SourceFacebookMarketing) (SourceFacebookMarketing, error) {
 	// logger := fwhelpers.GetLogger()
 
-	return SourceFacebookMarketing{}, fmt.Errorf("update resource is not supported")
+	method := "PUT"
+	url := c.Host + "/v1/sources/" + payload.SourceId
+	body, err := json.Marshal(payload)
+	if err != nil {
+		return SourceFacebookMarketing{}, err
+	}
+
+	b, statusCode, _, _, err := c.doRequest(method, url, body, nil)
+	if err != nil {
+		return SourceFacebookMarketing{}, err
+	}
+
+	source := SourceFacebookMarketing{}
+	if statusCode >= 200 && statusCode <= 299 {
+		err = json.Unmarshal(b, &source)
+		return source, err
+	} else {
+		msg, err := c.getAPIError(b)
+		if err != nil {
+			return source, err
+		} else {
+			return source, fmt.Errorf(msg)
+		}
+	}
 }
 
 func (c *Client) DeleteFacebookMarketingSource(sourceId string) error {

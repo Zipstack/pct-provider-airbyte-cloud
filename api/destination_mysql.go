@@ -81,7 +81,30 @@ func (c *Client) ReadMysqlDestination(destinationId string) (DestinationMysql, e
 func (c *Client) UpdateMysqlDestination(payload DestinationMysql) (DestinationMysql, error) {
 	// logger := fwhelpers.GetLogger()
 
-	return DestinationMysql{}, fmt.Errorf("update resource is not supported")
+	method := "PUT"
+	url := c.Host + "/v1/destinations/" + payload.DestinationId
+	body, err := json.Marshal(payload)
+	if err != nil {
+		return DestinationMysql{}, err
+	}
+
+	b, statusCode, _, _, err := c.doRequest(method, url, body, nil)
+	if err != nil {
+		return DestinationMysql{}, err
+	}
+
+	source := DestinationMysql{}
+	if statusCode >= 200 && statusCode <= 299 {
+		err = json.Unmarshal(b, &source)
+		return source, err
+	} else {
+		msg, err := c.getAPIError(b)
+		if err != nil {
+			return source, err
+		} else {
+			return source, fmt.Errorf(msg)
+		}
+	}
 }
 
 func (c *Client) DeleteMysqlDestination(destinationId string) error {

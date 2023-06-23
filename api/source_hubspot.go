@@ -81,7 +81,30 @@ func (c *Client) ReadHubspotSource(sourceId string) (SourceHubspot, error) {
 
 func (c *Client) UpdateHubspotSource(payload SourceHubspot) (SourceHubspot, error) {
 	// logger := fwhelpers.GetLogger()
-	return SourceHubspot{}, fmt.Errorf("update resource is not supported")
+	method := "PUT"
+	url := c.Host + "/v1/sources/" + payload.SourceId
+	body, err := json.Marshal(payload)
+	if err != nil {
+		return SourceHubspot{}, err
+	}
+
+	b, statusCode, _, _, err := c.doRequest(method, url, body, nil)
+	if err != nil {
+		return SourceHubspot{}, err
+	}
+
+	source := SourceHubspot{}
+	if statusCode >= 200 && statusCode <= 299 {
+		err = json.Unmarshal(b, &source)
+		return source, err
+	} else {
+		msg, err := c.getAPIError(b)
+		if err != nil {
+			return source, err
+		} else {
+			return source, fmt.Errorf(msg)
+		}
+	}
 }
 
 func (c *Client) DeleteHubspotSource(sourceId string) error {
